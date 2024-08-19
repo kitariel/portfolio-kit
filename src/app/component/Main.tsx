@@ -9,6 +9,7 @@ import MyName from './MyName';
 import TechList from './TechList';
 import MyResume from './MyResume';
 import MyWork from './MyWork';
+import SocialMediaLinks from './MySocial';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -38,6 +39,11 @@ export default function Main() {
         <Grid xs={12} sm={6} md={8} lg={6}>
           <Item>
             <MyWork />
+          </Item>
+        </Grid>
+        <Grid xs={12} sm={6} md={8} lg={6}>
+          <Item>
+            <SocialMediaLinks />
           </Item>
         </Grid>
       </Grid>
