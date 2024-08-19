@@ -8,6 +8,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import MyName from './MyName';
 import TechList from './TechList';
 import MyResume from './MyResume';
+import MyWork from './MyWork';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -27,9 +28,7 @@ export default function Main() {
           </Item>
         </Grid>
         <Grid xs={12} sm={6} md={4} lg={3}>
-          <Item>
-            <TechList />
-          </Item>
+          <TechList />
         </Grid>
         <Grid xs={12} sm={6} md={4} lg={3}>
           <Item>
@@ -37,7 +36,9 @@ export default function Main() {
           </Item>
         </Grid>
         <Grid xs={12} sm={6} md={8} lg={6}>
-          <Item>xs=8</Item>
+          <Item>
+            <MyWork />
+          </Item>
         </Grid>
       </Grid>
     </Box>

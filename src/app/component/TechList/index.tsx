@@ -34,8 +34,8 @@ export default function TechList() {
   ];
 
   return (
-    <Box padding={2}>
-      <Grid container spacing={2}>
+    <Box>
+      <Grid container spacing={1}>
         {techs.map((tech, index) => (
           <Grid key={index} xs={12} sm={6} md={4} lg={3}>
             <Item>

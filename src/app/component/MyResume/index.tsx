@@ -31,10 +31,9 @@ export default function MyResume() {
         padding: 2,
       }}
     >
-      <Typography variant='h2' component='h1'>
+      <Typography variant='h4' component='h4'>
         RESUME
       </Typography>
-
       <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2 }}>
         <Button
           variant='contained'
