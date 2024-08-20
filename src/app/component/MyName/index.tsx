@@ -2,7 +2,7 @@ import MyImage from './Image';
 
 export default function MyName() {
   return (
-    <div className=''>
+    <div>
       <div className='space-x-2 justify-center flex flex-row m-1'>
         <MyImage />
         <h1>Kit Mikhael Bagares</h1>

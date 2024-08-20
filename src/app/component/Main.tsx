@@ -10,6 +10,8 @@ import TechList from './TechList';
 import MyResume from './MyResume';
 import MyWork from './MyWork';
 import SocialMediaLinks from './MySocial';
+import MySchool from './MySchool';
+import MyLocation from './MyLocation';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -26,25 +28,26 @@ export default function Main() {
         <Grid xs={9} sm={6} md={4} lg={2}>
           <Item>
             <MyName />
+            <SocialMediaLinks />
           </Item>
         </Grid>
-        <Grid xs={12} sm={6} md={4} lg={3}>
-          <TechList />
-        </Grid>
-        <Grid xs={12} sm={6} md={4} lg={3}>
+        <Grid xs={9} sm={6} md={4} lg={2}>
           <Item>
-            <MyResume />
+            <MyLocation />
           </Item>
         </Grid>
-        <Grid xs={12} sm={6} md={8} lg={6}>
+        <Grid xs={9} sm={6} md={4} lg={4}>
+          <Item>
+            <MySchool />
+          </Item>
+        </Grid>
+        <Grid xs={12} sm={8} md={6} lg={4}>
           <Item>
             <MyWork />
           </Item>
         </Grid>
-        <Grid xs={12} sm={6} md={8} lg={6}>
-          <Item>
-            <SocialMediaLinks />
-          </Item>
+        <Grid xs={9} sm={6} md={4} lg={4}>
+          <TechList />
         </Grid>
       </Grid>
     </Box>

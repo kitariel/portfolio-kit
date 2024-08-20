@@ -3,10 +3,12 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 export default function MyImage() {
   return (
-    <Avatar
-      alt='Kit'
-      src='../../assets/images/me2.png'
-      sx={{ width: 75, height: 75 }}
-    />
+    <div>
+      <Avatar
+        alt='USC'
+        src='../../assets/images/usclogo.png'
+        sx={{ width: 120, height: 120 }}
+      />
+    </div>
   );
 }

@@ -28,10 +28,9 @@ export default function MyResume() {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: 2,
       }}
     >
-      <Typography variant='h4' component='h4'>
+      <Typography variant='h5' component='div'>
         RESUME
       </Typography>
       <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2 }}>
@@ -43,7 +42,6 @@ export default function MyResume() {
         >
           Download
         </Button>
-
         <Button
           variant='outlined'
           color='primary'
