@@ -25,15 +25,18 @@ export default function Main() {
   return (
     <Box padding={1}>
       <Grid container spacing={1} columns={{ xs: 1, sm: 2, md: 3, lg: 4 }}>
-        <Grid xs={9} sm={6} md={4} lg={2}>
+        <Grid xs={8} sm={6} md={4} lg={2}>
           <Item>
             <MyName />
             <SocialMediaLinks />
           </Item>
         </Grid>
-        <Grid xs={9} sm={6} md={4} lg={2}>
+        <Grid xs={8} sm={6} md={4} lg={2}>
+          <MyLocation />
+        </Grid>
+        <Grid xs={2} sm={2} md={2} lg={2}>
           <Item>
-            <MyLocation />
+            <MyResume />
           </Item>
         </Grid>
         <Grid xs={9} sm={6} md={4} lg={4}>

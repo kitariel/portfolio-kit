@@ -10,7 +10,7 @@ export default function MyLocation() {
     <Box
       display='flex'
       flexDirection={{ xs: 'column', md: 'row' }}
-      alignItems='center'
+      alignItems='start'
       justifyContent='center'
       gap={4}
       p={2}
@@ -29,7 +29,7 @@ export default function MyLocation() {
       {/* OpenStreetMap Section */}
       <Box
         component='iframe'
-        sx={{ border: 0, width: '100%', height: 300, maxWidth: 500 }}
+        sx={{ border: 0, width: '100%', height: 250, maxWidth: 500 }}
         src='https://www.openstreetmap.org/export/embed.html?bbox=123.88543701171874%2C10.308635%2C123.91152191162111%2C10.330947&layer=mapnik&marker=10.319791%2C123.898480'
         allowFullScreen
       />

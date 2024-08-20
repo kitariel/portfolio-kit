@@ -12,11 +12,14 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Avatar from '@mui/material/Avatar';
+
 const pages = ['About', 'Work', 'Projects'];
+
 export default function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
+
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -26,14 +29,16 @@ export default function Header() {
   };
 
   return (
-    <AppBar position='static'>
+    <AppBar position='sticky'>
+      {' '}
+      {/* Changed from 'static' to 'sticky' */}
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
           <Avatar
             className='px-1'
             alt='Kit'
             src='../../assets/images/Me1.png'
-            sx={{ width: 24, height: 24 }}
+            sx={{ width: 40, height: 40 }}
           />
           <Typography
             variant='h6'

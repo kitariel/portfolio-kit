@@ -8,9 +8,14 @@ export default function MyName() {
         <h1>Kit Mikhael Bagares</h1>
       </div>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel dolorum
-        molestiae quos impedit? Adipisci iste eligendi aspernatur laudantium
-        velit doloribus porro ipsum unde nostrum sit, iure ut sunt vero quae.
+        A highly motivated and results-driven individual with a strong hunger
+        for knowledge and a commitment to continuous learning. Passionate about
+        developing innovative applications and mastering new programming
+        languages and architectures to improve services and web applications.
+        Dedicated to creating creative and useful solutions that push the
+        boundaries of technology and contribute to future advancements. Eager to
+        thrive in dynamic environments and make a significant impact through
+        continuous professional growth.
       </p>
     </div>
   );
