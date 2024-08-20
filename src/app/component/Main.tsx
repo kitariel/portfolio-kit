@@ -45,9 +45,7 @@ export default function Main() {
           </Item>
         </Grid>
         <Grid xs={12} sm={8} md={6} lg={4}>
-          <Item>
-            <MyWork />
-          </Item>
+          <MyWork />
         </Grid>
         <Grid xs={9} sm={6} md={4} lg={4}>
           <TechList />
