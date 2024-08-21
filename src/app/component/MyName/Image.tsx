@@ -6,7 +6,7 @@ export default function MyImage() {
     <Avatar
       alt='Kit'
       src='../../assets/images/me2.png'
-      sx={{ width: 75, height: 75 }}
+      sx={{ width: 200, height: 200 }}
     />
   );
 }

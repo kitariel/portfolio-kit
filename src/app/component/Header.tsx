@@ -29,16 +29,20 @@ export default function Header() {
   };
 
   return (
-    <AppBar position='sticky'>
-      {' '}
-      {/* Changed from 'static' to 'sticky' */}
+    <AppBar
+      position='sticky'
+      sx={{
+        background: 'linear-gradient(to right, #0a192f, #112240, #233554)', // Match the gradient
+        boxShadow: 'none', // Optional: remove default shadow
+      }}
+    >
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
           <Avatar
             className='px-1'
             alt='Kit'
             src='../../assets/images/Me1.png'
-            sx={{ width: 40, height: 40 }}
+            sx={{ width: 60, height: 60 }}
           />
           <Typography
             variant='h6'
@@ -51,7 +55,7 @@ export default function Header() {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              color: 'white', // Ensure the text is visible
               textDecoration: 'none',
             }}
           >
@@ -85,16 +89,22 @@ export default function Header() {
               onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: 'block', md: 'none' },
+                background:
+                  'linear-gradient(to right, #0a192f, #112240, #233554)', // Match the gradient
               }}
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign='center'>{page}</Typography>
+                  <Typography textAlign='center' color='textPrimary'>
+                    {page}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <AdbIcon
+            sx={{ display: { xs: 'flex', md: 'none' }, mr: 1, color: 'white' }}
+          />
           <Typography
             variant='h5'
             noWrap
@@ -107,7 +117,7 @@ export default function Header() {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              color: 'white', // Ensure the text is visible
               textDecoration: 'none',
             }}
           >
