@@ -3,10 +3,10 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
+import { Grid } from '@mui/material';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -195,17 +195,34 @@ export default function TechList() {
   ];
 
   return (
-    <Box>
-      <Grid container spacing={1}>
+    <Box
+      sx={{
+        display: 'flex',
+        overflow: 'hidden',
+        width: '100%',
+      }}
+      paddingY={2}
+    >
+      <Box
+        sx={{
+          display: 'flex',
+          animation: 'scroll 50s linear infinite',
+          '@keyframes scroll': {
+            '0%': { transform: 'translateX(0)' },
+            '100%': { transform: 'translateX(-100%)' },
+          },
+          whiteSpace: 'nowrap', // Keeps content on one line
+        }}
+      >
         {techs.map((tech, index) => (
-          <Grid key={index} xs={12} sm={6} md={4} lg={3}>
+          <Box key={index} sx={{ minWidth: '200px', marginRight: 2 }}>
             <Item>
               {tech.icon}
               <Typography variant='subtitle1'>{tech.name}</Typography>
             </Item>
-          </Grid>
+          </Box>
         ))}
-      </Grid>
+      </Box>
     </Box>
   );
 }

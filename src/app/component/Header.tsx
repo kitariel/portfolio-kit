@@ -13,7 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Avatar from '@mui/material/Avatar';
 
-const pages = ['About', 'Work', 'Projects'];
+const pages = ['Feeds', 'Games', 'Projects'];
 
 export default function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(

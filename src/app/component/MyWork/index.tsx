@@ -29,7 +29,7 @@ const workExperiences: WorkExperience[] = [
     company: 'DNA Micro Software INC.',
     role: 'Senior Lead Full Stack Developer',
     description: `
-      - Led a dynamic team, fostering strong relationships by understanding individual team members' characters, teaching quality coding practices, and conducting thorough code reviews.
+      - Lead a dynamic team, fostering strong relationships by understanding individual team members' characters, teaching quality coding practices, and conducting thorough code reviews.
       - Resolved major issues to support the team and enhance their productivity and work quality.
       - Created initial services and templates to expedite API development, enabling the team to work efficiently and deliver rapid results.
       - Interacted with clients to ensure optimal user experience, managing expectations and setting clear limits for functionalities not yet implemented.
@@ -99,7 +99,7 @@ export default function MyWork() {
                     {work.role}
                   </Typography>
                   <Divider sx={{ my: 1 }} />
-                  <Typography variant='body2'>
+                  <Typography variant='h6'>
                     {expandedIndex === index
                       ? work.description
                       : `${work.description.slice(0, 100)}...`}
