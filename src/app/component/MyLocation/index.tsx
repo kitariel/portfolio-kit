@@ -10,13 +10,13 @@ export default function MyLocation() {
     <Box
       display='flex'
       flexDirection={{ xs: 'column', md: 'row' }}
-      alignItems='start'
+      alignItems={{ xs: 'center', md: 'start' }}
       justifyContent='center'
       gap={4}
       p={2}
     >
       {/* Address Section */}
-      <Paper elevation={3} sx={{ p: 3, maxWidth: 400 }}>
+      <Paper elevation={3} sx={{ p: 3, maxWidth: 400, textAlign: 'center' }}>
         <Typography variant='h6' gutterBottom>
           My Location
         </Typography>
@@ -29,7 +29,12 @@ export default function MyLocation() {
       {/* OpenStreetMap Section */}
       <Box
         component='iframe'
-        sx={{ border: 0, width: '100%', height: 250, maxWidth: 500 }}
+        sx={{
+          border: 0,
+          width: { xs: '100%', md: '60%' },
+          height: 250,
+          maxWidth: 500,
+        }}
         src='https://www.openstreetmap.org/export/embed.html?bbox=123.88543701171874%2C10.308635%2C123.91152191162111%2C10.330947&layer=mapnik&marker=10.319791%2C123.898480'
         allowFullScreen
       />

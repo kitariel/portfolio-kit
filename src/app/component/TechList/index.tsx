@@ -147,7 +147,7 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='GraphQL'
-          src='../../assets/images/graphql.png'
+          src='../../assets/images/gql.png'
           sx={{ width: 85, height: 85 }}
         />
       ),
@@ -177,8 +177,8 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='XState'
-          src='../../assets/images/xstate.png'
-          sx={{ width: 85, height: 85 }}
+          src='../../assets/images/xstate.svg'
+          sx={{ width: 150, height: 85 }}
         />
       ),
     },
@@ -188,7 +188,7 @@ export default function TechList() {
         <Avatar
           alt='ExpressJS'
           src='../../assets/images/expressjs.png'
-          sx={{ width: 85, height: 85 }}
+          sx={{ width: 150, height: 85 }}
         />
       ),
     },

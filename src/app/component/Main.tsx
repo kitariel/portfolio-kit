@@ -39,7 +39,7 @@ export default function Main() {
             <MyResume />
           </Item>
         </Grid>
-        <Grid xs={9} sm={6} md={4} lg={4}>
+        <Grid xs={10} sm={8} md={6} lg={4}>
           <Item>
             <MySchool />
           </Item>
