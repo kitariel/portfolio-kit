@@ -15,13 +15,17 @@ export default function SocialMediaLinks() {
     <Box display='flex' flexDirection='column' alignItems='start' gap={2} p={2}>
       <Box display='flex' justifyContent='start' gap={2}>
         <a
-          href='https://www.linkedin.com'
+          href='https://www.linkedin.com/in/kit-mikhael-bagares-1143541a7/'
           target='_blank'
           rel='noopener noreferrer'
         >
           <LinkedInIcon fontSize='large' />
         </a>
-        <a href='https://github.com' target='_blank' rel='noopener noreferrer'>
+        <a
+          href='https://github.com/kitariel'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
           <GitHubIcon className='text-black' fontSize='large' />
         </a>
         <a
@@ -32,7 +36,7 @@ export default function SocialMediaLinks() {
           <WhatsAppIcon className='text-green-500' fontSize='large' />
         </a>
         <a
-          href='https://www.facebook.com'
+          href='https://www.facebook.com/kbagares/'
           target='_blank'
           rel='noopener noreferrer'
         >
@@ -51,10 +55,7 @@ export default function SocialMediaLinks() {
             kityoubagares94@gmail.com
           </Typography>
         </Box>
-        <Box display='flex' alignItems='center' gap={1}>
-          <WhatsAppIcon className='text-green-500' fontSize='large' />
-          <Typography variant='body1'>+63 992 597 5698</Typography>
-        </Box>
+
         <Box display='flex' alignItems='center' gap={1}>
           <PhoneIcon className='text-blue-500' fontSize='large' />
           <Typography variant='body1'>+63 945 427 8134</Typography>
