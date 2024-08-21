@@ -6,7 +6,7 @@ export default function MyImage() {
     <div>
       <Avatar
         alt='USC'
-        src='../../assets/images/usclogo.png'
+        src='/assets/images/usclogo.png'
         sx={{ width: 120, height: 120 }}
       />
     </div>

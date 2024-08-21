@@ -17,8 +17,8 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='NextJS'
-          src='../../assets/images/nextjs.jpg'
-          sx={{ width: 85, height: 85 }}
+          src='/assets/images/nextjs.jpg'
+          sx={{ width: 45, height: 45 }}
         />
       ),
     },
@@ -27,8 +27,8 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='NestJS'
-          src='../../assets/images/nestjs.webp'
-          sx={{ width: 150, height: 85 }}
+          src='/assets/images/nestjs.webp'
+          sx={{ width: 130, height: 45 }}
         />
       ),
     },
@@ -37,8 +37,8 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='JavaScript'
-          src='../../assets/images/Javascript.png'
-          sx={{ width: 86, height: 85 }}
+          src='/assets/images/Javascript.png'
+          sx={{ width: 45, height: 45 }}
         />
       ),
     },
@@ -47,8 +47,8 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='TypeScript'
-          src='../../assets/images/typescript.png'
-          sx={{ width: 85, height: 85 }}
+          src='/assets/images/typescript.png'
+          sx={{ width: 45, height: 45 }}
         />
       ),
     },
@@ -57,8 +57,8 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='NodeJS'
-          src='../../assets/images/nodejs.png'
-          sx={{ width: 85, height: 85 }}
+          src='/assets/images/nodejs.png'
+          sx={{ width: 45, height: 45 }}
         />
       ),
     },
@@ -67,8 +67,8 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='Grpc'
-          src='../../assets/images/grpc.png'
-          sx={{ width: 85, height: 85 }}
+          src='/assets/images/grpc.png'
+          sx={{ width: 45, height: 45 }}
         />
       ),
     },
@@ -77,8 +77,8 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='Linux'
-          src='../../assets/images/linux.png'
-          sx={{ width: 85, height: 85 }}
+          src='/assets/images/linux.png'
+          sx={{ width: 45, height: 45 }}
         />
       ),
     },
@@ -87,8 +87,8 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='ReactJS'
-          src='../../assets/images/reactjs.png'
-          sx={{ width: 85, height: 85 }}
+          src='/assets/images/reactjs.png'
+          sx={{ width: 45, height: 45 }}
         />
       ),
     },
@@ -97,8 +97,8 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='RethinkDB'
-          src='../../assets/images/rethinkdb.png'
-          sx={{ width: 85, height: 85 }}
+          src='/assets/images/rethinkdb.png'
+          sx={{ width: 45, height: 45 }}
         />
       ),
     },
@@ -107,8 +107,8 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='C#'
-          src='../../assets/images/csharp.png'
-          sx={{ width: 85, height: 85 }}
+          src='/assets/images/csharp.png'
+          sx={{ width: 45, height: 45 }}
         />
       ),
     },
@@ -117,8 +117,8 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='Docker'
-          src='../../assets/images/docker.png'
-          sx={{ width: 85, height: 85 }}
+          src='/assets/images/docker.png'
+          sx={{ width: 45, height: 45 }}
         />
       ),
     },
@@ -127,8 +127,8 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='Git'
-          src='../../assets/images/git.png'
-          sx={{ width: 85, height: 85 }}
+          src='/assets/images/git.png'
+          sx={{ width: 45, height: 45 }}
         />
       ),
     },
@@ -137,8 +137,8 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='GraphQL'
-          src='../../assets/images/gql.png'
-          sx={{ width: 85, height: 85 }}
+          src='/assets/images/gql.png'
+          sx={{ width: 45, height: 45 }}
         />
       ),
     },
@@ -147,8 +147,8 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='Socket.io'
-          src='../../assets/images/socketio.png'
-          sx={{ width: 85, height: 85 }}
+          src='/assets/images/socketio.png'
+          sx={{ width: 45, height: 45 }}
         />
       ),
     },
@@ -157,8 +157,8 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='Kafka'
-          src='../../assets/images/kafka.png'
-          sx={{ width: 85, height: 85 }}
+          src='/assets/images/kafka.png'
+          sx={{ width: 45, height: 45 }}
         />
       ),
     },
@@ -167,8 +167,8 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='XState'
-          src='../../assets/images/xstate.svg'
-          sx={{ width: 150, height: 85 }}
+          src='/assets/images/xstate.svg'
+          sx={{ width: 130, height: 45 }}
         />
       ),
     },
@@ -177,8 +177,8 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='ExpressJS'
-          src='../../assets/images/expressjs.png'
-          sx={{ width: 150, height: 85 }}
+          src='/assets/images/expressjs.png'
+          sx={{ width: 100, height: 45 }}
         />
       ),
     },
