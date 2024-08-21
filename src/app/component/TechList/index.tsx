@@ -7,18 +7,7 @@ import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import { Grid } from '@mui/material';
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(2),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  flexDirection: 'column',
-}));
+import { Item } from '../Item';
 
 export default function TechList() {
   const techs = [
@@ -216,7 +205,15 @@ export default function TechList() {
       >
         {techs.map((tech, index) => (
           <Box key={index} sx={{ minWidth: '200px', marginRight: 2 }}>
-            <Item>
+            <Item
+              style={{
+                textAlign: 'center',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'column',
+              }}
+            >
               {tech.icon}
               <Typography variant='subtitle1'>{tech.name}</Typography>
             </Item>

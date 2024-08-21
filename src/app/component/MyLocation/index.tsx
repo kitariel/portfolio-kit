@@ -5,13 +5,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material';
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(3),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
+import { Item } from '../Item';
 
 export default function MyLocation() {
   return (
@@ -33,6 +27,9 @@ export default function MyLocation() {
 
       {/* OpenStreetMap Section */}
       <Box
+        alignSelf={'center'}
+        alignItems='center'
+        justifyContent='center'
         display='flex'
         component='iframe'
         sx={{

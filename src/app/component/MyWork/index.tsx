@@ -15,6 +15,7 @@ import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 import Button from '@mui/material/Button';
+import { StyledCard } from '../Item';
 
 interface WorkExperience {
   year: string;
@@ -90,7 +91,7 @@ export default function MyWork() {
             </TimelineSeparator>
 
             <TimelineContent>
-              <Card elevation={3}>
+              <StyledCard elevation={3}>
                 <CardContent>
                   <Typography variant='h6' component='h3'>
                     {work.company}
@@ -112,7 +113,7 @@ export default function MyWork() {
                     {expandedIndex === index ? 'Show Less' : 'Show More'}
                   </Button>
                 </CardContent>
-              </Card>
+              </StyledCard>
             </TimelineContent>
           </TimelineItem>
         ))}

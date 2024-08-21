@@ -12,14 +12,7 @@ import MyWork from './MyWork';
 import SocialMediaLinks from './MySocial';
 import MySchool from './MySchool';
 import MyLocation from './MyLocation';
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(3),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
+import { Item } from './Item';
 
 export default function Main() {
   return (
