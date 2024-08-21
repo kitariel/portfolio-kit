@@ -11,14 +11,14 @@ export default function MyResume() {
   const handleDownload = () => {
     // Logic to handle the resume download
     const link = document.createElement('a');
-    link.href = '../../assets/resume/KitMikhaelBagaresNewResume.pdf'; // Replace with the path to your resume file
+    link.href = '/static/resume/KitMikhaelBagaresNewResume.pdf'; // Replace with the path to your resume file
     link.download = 'My_Resume.pdf';
     link.click();
   };
 
   const handleView = () => {
     // Logic to handle viewing the resume in a new tab
-    window.open('../../assets/resume/KitMikhaelBagaresNewResume.pdf', '_blank'); // Replace with the path to your resume file
+    window.open('/static/resume/KitMikhaelBagaresNewResume.pdf', '_blank'); // Replace with the path to your resume file
   };
 
   return (
