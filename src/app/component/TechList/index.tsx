@@ -207,7 +207,7 @@ export default function TechList() {
             '&::-webkit-scrollbar': {
               display: 'none', // Hide scrollbar for WebKit browsers
             },
-            '-ms-overflow-style': 'none', // Hide scrollbar for Internet Explorer and Edge
+            msOverflowStyle: 'none', // Hide scrollbar for Internet Explorer and Edge
             scrollbarWidth: 'none', // Hide scrollbar for Firefox
           }}
         >

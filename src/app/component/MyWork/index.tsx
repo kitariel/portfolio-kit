@@ -69,7 +69,7 @@ export default function MyWork() {
   };
 
   return (
-    <Box padding={3} sx={{ textAlign: 'center' }}>
+    <Box sx={{ textAlign: 'center' }}>
       <Typography variant='h4' component='h2' gutterBottom>
         My Work Experience
       </Typography>

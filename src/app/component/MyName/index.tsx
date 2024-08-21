@@ -21,8 +21,7 @@ export default function MyName() {
         </Box>
       </Box>
 
-      {/* Description */}
-      <Typography paddingY={3} variant='h5'>
+      <Typography align='left' paddingY={3} variant='h5'>
         A highly motivated and results-driven individual with a strong hunger
         for knowledge and a commitment to continuous learning. Passionate about
         developing innovative applications and mastering new programming
