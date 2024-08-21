@@ -8,6 +8,7 @@ import { styled } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import { Grid } from '@mui/material';
 import { Item } from '../Item';
+import { ArrowBack, ArrowForward, ArrowLeft } from '@mui/icons-material';
 
 export default function TechList() {
   const techs = [
@@ -182,44 +183,52 @@ export default function TechList() {
       ),
     },
   ];
-
+  const rows = [
+    techs.slice(0, Math.ceil(techs.length / 2)),
+    techs.slice(Math.ceil(techs.length / 2)),
+  ];
   return (
     <Box
       sx={{
         display: 'flex',
-        overflow: 'hidden',
+        flexDirection: 'column',
         width: '100%',
+        paddingY: 2,
       }}
-      paddingY={2}
     >
-      <Box
-        sx={{
-          display: 'flex',
-          animation: 'scroll 50s linear infinite',
-          '@keyframes scroll': {
-            '0%': { transform: 'translateX(0)' },
-            '100%': { transform: 'translateX(-100%)' },
-          },
-          whiteSpace: 'nowrap', // Keeps content on one line
-        }}
-      >
-        {techs.map((tech, index) => (
-          <Box key={index} sx={{ minWidth: '200px', marginRight: 2 }}>
-            <Item
-              style={{
-                textAlign: 'center',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexDirection: 'column',
-              }}
-            >
-              {tech.icon}
-              <Typography variant='subtitle1'>{tech.name}</Typography>
-            </Item>
-          </Box>
-        ))}
-      </Box>
+      {rows.map((row, rowIndex) => (
+        <Box
+          key={rowIndex}
+          sx={{
+            display: 'flex',
+            overflowX: 'scroll', // Enable horizontal scroll
+            whiteSpace: 'nowrap',
+            marginBottom: 2, // Space between rows
+            '&::-webkit-scrollbar': {
+              display: 'none', // Hide scrollbar for WebKit browsers
+            },
+            '-ms-overflow-style': 'none', // Hide scrollbar for Internet Explorer and Edge
+            scrollbarWidth: 'none', // Hide scrollbar for Firefox
+          }}
+        >
+          {row.map((tech, index) => (
+            <Box key={index} sx={{ minWidth: '200px', marginRight: 2 }}>
+              <Item
+                style={{
+                  textAlign: 'center',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexDirection: 'column',
+                }}
+              >
+                {tech.icon}
+                <Typography variant='subtitle1'>{tech.name}</Typography>
+              </Item>
+            </Box>
+          ))}
+        </Box>
+      ))}
     </Box>
   );
 }
