@@ -17,7 +17,7 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='NextJS'
-          src='/static/images/nextjs.jpg'
+          src='static/images/nextjs.jpg'
           sx={{ width: 45, height: 45 }}
         />
       ),
@@ -27,7 +27,7 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='NestJS'
-          src='/static/images/nestjs.webp'
+          src='static/images/nestjs.webp'
           sx={{ width: 130, height: 45 }}
         />
       ),
@@ -37,7 +37,7 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='JavaScript'
-          src='/static/images/Javascript.png'
+          src='static/images/Javascript.png'
           sx={{ width: 45, height: 45 }}
         />
       ),
@@ -47,7 +47,7 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='TypeScript'
-          src='/static/images/typescript.png'
+          src='static/images/typescript.png'
           sx={{ width: 45, height: 45 }}
         />
       ),
@@ -57,7 +57,7 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='NodeJS'
-          src='/static/images/nodejs.png'
+          src='static/images/nodejs.png'
           sx={{ width: 45, height: 45 }}
         />
       ),
@@ -67,7 +67,7 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='Grpc'
-          src='/static/images/grpc.png'
+          src='static/images/grpc.png'
           sx={{ width: 45, height: 45 }}
         />
       ),
@@ -77,7 +77,7 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='Linux'
-          src='/static/images/linux.png'
+          src='static/images/linux.png'
           sx={{ width: 45, height: 45 }}
         />
       ),
@@ -87,7 +87,7 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='ReactJS'
-          src='/static/images/reactjs.png'
+          src='static/images/reactjs.png'
           sx={{ width: 45, height: 45 }}
         />
       ),
@@ -97,7 +97,7 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='RethinkDB'
-          src='/static/images/rethinkdb.png'
+          src='static/images/rethinkdb.png'
           sx={{ width: 45, height: 45 }}
         />
       ),
@@ -107,7 +107,7 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='C#'
-          src='/static/images/csharp.png'
+          src='static/images/csharp.png'
           sx={{ width: 45, height: 45 }}
         />
       ),
@@ -117,7 +117,7 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='Docker'
-          src='/static/images/docker.png'
+          src='static/images/docker.png'
           sx={{ width: 45, height: 45 }}
         />
       ),
@@ -127,7 +127,7 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='Git'
-          src='/static/images/git.png'
+          src='static/images/git.png'
           sx={{ width: 45, height: 45 }}
         />
       ),
@@ -137,7 +137,7 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='GraphQL'
-          src='/static/images/gql.png'
+          src='static/images/gql.png'
           sx={{ width: 45, height: 45 }}
         />
       ),
@@ -147,7 +147,7 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='Socket.io'
-          src='/static/images/socketio.png'
+          src='static/images/socketio.png'
           sx={{ width: 45, height: 45 }}
         />
       ),
@@ -157,7 +157,7 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='Kafka'
-          src='/static/images/kafka.png'
+          src='static/images/kafka.png'
           sx={{ width: 45, height: 45 }}
         />
       ),
@@ -167,7 +167,7 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='XState'
-          src='/static/images/xstate.svg'
+          src='static/images/xstate.svg'
           sx={{ width: 130, height: 45 }}
         />
       ),
@@ -177,7 +177,7 @@ export default function TechList() {
       icon: (
         <Avatar
           alt='ExpressJS'
-          src='/static/images/expressjs.png'
+          src='static/images/expressjs.png'
           sx={{ width: 100, height: 45 }}
         />
       ),

@@ -41,7 +41,7 @@ export default function Header() {
           <Avatar
             className='px-1'
             alt='Kit'
-            src='/static/images/Me1.png'
+            src='static/images/Me1.png'
             sx={{ width: 60, height: 60 }}
           />
           <Typography
