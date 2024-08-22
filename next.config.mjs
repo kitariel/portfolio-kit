@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
 
-const isProd = process.env.NODE_ENV === 'production' ? '/portfolio-kit' : '';
-const isProdAsset =
-  process.env.NODE_ENV === 'production' ? '/portfolio-kit/' : '';
 const nextConfig = {
   output: 'export', // Enables static export
   basePath: '/portfolio-kit', // Your GitHub repository name
