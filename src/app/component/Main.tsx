@@ -27,7 +27,7 @@ export default function Main() {
         <Grid xs={8} sm={6} md={4} lg={2}>
           <MyLocation />
         </Grid>
-        <Grid xs={2} sm={2} md={2} lg={2}>
+        <Grid xs={10} sm={8} md={6} lg={4}>
           <Item>
             <MyResume />
           </Item>
