@@ -48,6 +48,8 @@ export function HeroSection() {
                 text="<FullStackDeveloper />"
                 className="text-xl sm:text-2xl lg:text-3xl text-blue-400 mb-8 font-jetbrains"
                 delay={1000}
+                loop={true}
+                pauseDuration={3000}
               />
             </div>
           </div>
