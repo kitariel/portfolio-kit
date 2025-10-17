@@ -1,7 +1,9 @@
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
-import { ThemeProvider } from '@mui/material/styles';
+import {AppRouterCacheProvider} from '@mui/material-nextjs/v15-appRouter';
+import {ThemeProvider} from '@mui/material/styles';
 import theme from '../theme';
 import Header from './component/Header';
+import CursorGlow from './component/CursorGlow';
+import GridBackground from './component/GridBackground';
 import './globals.css';
 
 export default function RootLayout(
@@ -9,12 +11,14 @@ export default function RootLayout(
     children: React.ReactNode;
   }>
 ) {
-  const { children } = props;
+  const {children} = props;
   return (
-    <html lang='en'>
-      <body className='bg-gradient-to-r from-blue-950 via-blue-900 to-blue-850'>
-        <AppRouterCacheProvider>
+    <html lang='en' suppressHydrationWarning>
+      <body className='bg-gradient-to-b from-[#0b0e1a] via-[#0f172a] to-[#0b0e1a]' suppressHydrationWarning>
+        <AppRouterCacheProvider options={{enableCssLayer: true}}>
           <ThemeProvider theme={theme}>
+            <CursorGlow />
+            <GridBackground />
             <Header />
             {children}
           </ThemeProvider>

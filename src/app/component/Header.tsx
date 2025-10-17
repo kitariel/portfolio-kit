@@ -13,12 +13,18 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Avatar from '@mui/material/Avatar';
 
-const pages = ['Feeds', 'Games', 'Projects'];
+const pages = [
+  { label: 'Home', href: '#home' },
+  { label: 'About', href: '#about' },
+  { label: 'Portfolio', href: '#portfolio' },
+  { label: 'Contact', href: 'mailto:kityoubagares94@gmail.com' },
+];
 
 export default function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
+  const navMenuButtonRef = React.useRef<HTMLButtonElement | null>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -32,8 +38,9 @@ export default function Header() {
     <AppBar
       position='sticky'
       sx={{
-        background: 'linear-gradient(to right, #0a192f, #112240, #233554)', // Match the gradient
-        boxShadow: 'none', // Optional: remove default shadow
+        background: 'linear-gradient(to right, rgba(12,10,20,0.85), rgba(12,10,20,0.6))',
+        backdropFilter: 'blur(6px)',
+        boxShadow: 'none',
       }}
     >
       <Container maxWidth='xl'>
@@ -41,7 +48,7 @@ export default function Header() {
           <Avatar
             className='px-1'
             alt='Kit'
-            src='static/images/Me1.png'
+            src='/static/images/Me1.png'
             sx={{ width: 60, height: 60 }}
           />
           <Typography
@@ -70,12 +77,13 @@ export default function Header() {
               aria-haspopup='true'
               onClick={handleOpenNavMenu}
               color='inherit'
+              ref={navMenuButtonRef}
             >
               <MenuIcon />
             </IconButton>
             <Menu
               id='menu-appbar'
-              anchorEl={anchorElNav}
+              anchorEl={navMenuButtonRef.current ?? anchorElNav}
               anchorOrigin={{
                 vertical: 'bottom',
                 horizontal: 'left',
@@ -94,9 +102,9 @@ export default function Header() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={page.label} component='a' href={page.href} onClick={handleCloseNavMenu}>
                   <Typography textAlign='center' color='textPrimary'>
-                    {page}
+                    {page.label}
                   </Typography>
                 </MenuItem>
               ))}
@@ -124,11 +132,13 @@ export default function Header() {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.label}
+                component='a'
+                href={page.href}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                {page.label}
               </Button>
             ))}
           </Box>

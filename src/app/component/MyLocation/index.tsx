@@ -10,7 +10,7 @@ import { Item } from '../Item';
 export default function MyLocation() {
   return (
     <Box
-      flexDirection='column' // Stack vertically by default
+      flexDirection='column'
       alignItems='center'
       justifyContent='center'
       gap={2}
@@ -21,8 +21,7 @@ export default function MyLocation() {
         <Typography variant='h6' gutterBottom>
           My Location
         </Typography>
-        <Typography variant='body1'>Urban Deca Homes Banilad</Typography>
-        <Typography variant='body1'>Cebu City, Philippines</Typography>
+        <Typography variant='body1'>Consolacion City, Cebu, Philippines</Typography>
       </Item>
 
       {/* OpenStreetMap Section */}
@@ -35,11 +34,11 @@ export default function MyLocation() {
         sx={{
           padding: 2,
           border: 0,
-          width: '100%', // Full width
+          width: '100%',
           maxWidth: 600,
-          height: { xs: 250, sm: 300, md: 350 }, // Adjust height for different screen sizes
+          height: { xs: 250, sm: 300, md: 350 },
         }}
-        src='https://www.openstreetmap.org/export/embed.html?bbox=123.88543701171874%2C10.308635%2C123.91152191162111%2C10.330947&layer=mapnik&marker=10.319791%2C123.898480'
+        src='https://www.openstreetmap.org/export/embed.html?bbox=123.992%2C10.347%2C124.017%2C10.387&layer=mapnik&marker=10.373%2C123.999' 
         allowFullScreen
       />
     </Box>

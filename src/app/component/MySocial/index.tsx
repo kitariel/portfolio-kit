@@ -21,25 +21,13 @@ export default function SocialMediaLinks() {
         >
           <LinkedInIcon fontSize='large' />
         </a>
-        <a
-          href='https://github.com/kitariel'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
+        <a href='https://github.com/kitariel' target='_blank' rel='noopener noreferrer'>
           <GitHubIcon className='text-black' fontSize='large' />
         </a>
-        <a
-          href={`https://wa.me/09925975698`}
-          target='_blank'
-          rel='noopener noreferrer'
-        >
+        <a href='https://wa.me/639454278134' target='_blank' rel='noopener noreferrer'>
           <WhatsAppIcon className='text-green-500' fontSize='large' />
         </a>
-        <a
-          href='https://www.facebook.com/kbagares/'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
+        <a href='https://www.facebook.com/kbagares/' target='_blank' rel='noopener noreferrer'>
           <FacebookIcon className='text-blue-600' fontSize='large' />
         </a>
       </Box>
@@ -47,11 +35,7 @@ export default function SocialMediaLinks() {
       <Box display='flex' flexDirection='column' alignItems='start' gap={1}>
         <Box display='flex' alignItems='center' gap={1}>
           <EmailIcon className='text-red-400' fontSize='large' />
-          <Typography
-            variant='body1'
-            component='a'
-            href='mailto:kityoubagares94@gmail.com'
-          >
+          <Typography variant='body1' component='a' href='mailto:kityoubagares94@gmail.com'>
             kityoubagares94@gmail.com
           </Typography>
         </Box>

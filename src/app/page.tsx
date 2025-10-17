@@ -1,10 +1,13 @@
-import Image from 'next/image';
-import Main from './component/Main';
+import Hero from './component/Hero';
+import AboutSection from './component/AboutSection';
+import PortfolioShowcase from './component/PortfolioShowcase';
 
 export default function Home() {
   return (
     <main>
-      <Main />
+      <Hero />
+      <AboutSection />
+      <PortfolioShowcase />
     </main>
   );
 }
