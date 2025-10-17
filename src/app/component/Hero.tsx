@@ -21,17 +21,19 @@ export default function Hero() {
         </Box>
 
         <Box sx={{ mt: 3 }}>
-          <Typography variant='h2' sx={{ fontWeight: 800, color: 'text.primary' }}>Full Stack</Typography>
-          <Typography variant='h2' sx={{ fontWeight: 800, background: 'linear-gradient(90deg, #a78bfa, #22d3ee)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Developer</Typography>
+          <Typography variant='h2' sx={{ fontWeight: 800, background: 'linear-gradient(90deg, #a78bfa, #22d3ee)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Senior Full-Stack Engineer</Typography>
         </Box>
 
         <Typography variant='body1' sx={{ mt: 2, color: 'text.secondary' }}>
-          Enhancing digital experiences that are smooth, scalable, and made to impress.
+          Innovative and results-driven engineer with 5+ years building scalable platforms, developer tooling, and microservice APIs.
+        </Typography>
+        <Typography variant='caption' sx={{ mt: 1.5, display: 'block', color: 'text.secondary' }}>
+          Consolacion City, Cebu, Philippines · +63 945 427 8134 · kityoubagares94@gmail.com
         </Typography>
 
-        <Box sx={{ mt: 3, display: 'flex', flexWrap: 'wrap', gap: 1.5 }}>
-          {['React', 'Javascript', 'Node.js', 'PostgreSQL'].map((skill) => (
-            <Chip key={skill} label={skill} className='hover-lift' sx={{ bgcolor: 'rgba(255,255,255,0.06)', color: 'text.primary', border: '1px solid rgba(255,255,255,0.12)' }} />
+        <Box sx={{ mt: 2, display: 'flex', flexWrap: 'wrap', gap: 1.25 }}>
+          {['React.js', 'Next.js', 'Node.js', 'Nest.js', 'TypeScript', 'GraphQL', 'Docker', 'Redis', 'Kafka'].map((skill) => (
+            <Chip key={skill} label={skill} className='hover-lift chip-animate' sx={{ bgcolor: 'rgba(255,255,255,0.06)', color: 'text.primary', border: '1px solid rgba(255,255,255,0.12)' }} />
           ))}
         </Box>
 

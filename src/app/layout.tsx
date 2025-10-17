@@ -5,6 +5,7 @@ import Header from './component/Header';
 import CursorGlow from './component/CursorGlow';
 import GridBackground from './component/GridBackground';
 import './globals.css';
+import Footer from './component/Footer';
 
 export default function RootLayout(
   props: Readonly<{
@@ -21,6 +22,7 @@ export default function RootLayout(
             <GridBackground />
             <Header />
             {children}
+            <Footer />
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>

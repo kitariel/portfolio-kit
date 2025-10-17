@@ -18,16 +18,17 @@ export default function SocialMediaLinks() {
           href='https://www.linkedin.com/in/kit-mikhael-bagares-1143541a7/'
           target='_blank'
           rel='noopener noreferrer'
+          className='hover-lift'
         >
           <LinkedInIcon fontSize='large' />
         </a>
-        <a href='https://github.com/kitariel' target='_blank' rel='noopener noreferrer'>
+        <a href='https://github.com/kitariel' target='_blank' rel='noopener noreferrer' className='hover-lift'>
           <GitHubIcon className='text-black' fontSize='large' />
         </a>
-        <a href='https://wa.me/639454278134' target='_blank' rel='noopener noreferrer'>
+        <a href='https://wa.me/639454278134' target='_blank' rel='noopener noreferrer' className='hover-lift'>
           <WhatsAppIcon className='text-green-500' fontSize='large' />
         </a>
-        <a href='https://www.facebook.com/kbagares/' target='_blank' rel='noopener noreferrer'>
+        <a href='https://www.facebook.com/kbagares/' target='_blank' rel='noopener noreferrer' className='hover-lift'>
           <FacebookIcon className='text-blue-600' fontSize='large' />
         </a>
       </Box>

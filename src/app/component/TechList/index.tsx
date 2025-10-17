@@ -2,232 +2,85 @@
 
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import { styled } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
-import { Grid } from '@mui/material';
 import { Item } from '../Item';
-import { ArrowBack, ArrowForward, ArrowLeft } from '@mui/icons-material';
 
 export default function TechList() {
   const techs = [
-    {
-      name: 'NextJS',
-      icon: (
-        <Avatar
-          alt='NextJS'
-          src='/static/images/nextjs.jpg'
-          sx={{ width: 45, height: 45 }}
-        />
-      ),
-    },
-    {
-      name: 'NestJS',
-      icon: (
-        <Avatar
-          alt='NestJS'
-          src='/static/images/nestjs.webp'
-          sx={{ width: 130, height: 45 }}
-        />
-      ),
-    },
-    {
-      name: 'JavaScript',
-      icon: (
-        <Avatar
-          alt='JavaScript'
-          src='/static/images/Javascript.png'
-          sx={{ width: 45, height: 45 }}
-        />
-      ),
-    },
-    {
-      name: 'TypeScript',
-      icon: (
-        <Avatar
-          alt='TypeScript'
-          src='/static/images/typescript.png'
-          sx={{ width: 45, height: 45 }}
-        />
-      ),
-    },
-    {
-      name: 'NodeJS',
-      icon: (
-        <Avatar
-          alt='NodeJS'
-          src='/static/images/nodejs.png'
-          sx={{ width: 45, height: 45 }}
-        />
-      ),
-    },
-    {
-      name: 'Grpc',
-      icon: (
-        <Avatar
-          alt='Grpc'
-          src='/static/images/grpc.png'
-          sx={{ width: 45, height: 45 }}
-        />
-      ),
-    },
-    {
-      name: 'Linux',
-      icon: (
-        <Avatar
-          alt='Linux'
-          src='/static/images/linux.png'
-          sx={{ width: 45, height: 45 }}
-        />
-      ),
-    },
-    {
-      name: 'ReactJS',
-      icon: (
-        <Avatar
-          alt='ReactJS'
-          src='/static/images/reactjs.png'
-          sx={{ width: 45, height: 45 }}
-        />
-      ),
-    },
-    {
-      name: 'RethinkDB',
-      icon: (
-        <Avatar
-          alt='RethinkDB'
-          src='/static/images/rethinkdb.png'
-          sx={{ width: 45, height: 45 }}
-        />
-      ),
-    },
-    {
-      name: 'C#',
-      icon: (
-        <Avatar
-          alt='C#'
-          src='/static/images/csharp.png'
-          sx={{ width: 45, height: 45 }}
-        />
-      ),
-    },
-    {
-      name: 'Docker',
-      icon: (
-        <Avatar
-          alt='Docker'
-          src='/static/images/docker.png'
-          sx={{ width: 45, height: 45 }}
-        />
-      ),
-    },
-    {
-      name: 'Git',
-      icon: (
-        <Avatar
-          alt='Git'
-          src='/static/images/git.png'
-          sx={{ width: 45, height: 45 }}
-        />
-      ),
-    },
-    {
-      name: 'GraphQL',
-      icon: (
-        <Avatar
-          alt='GraphQL'
-          src='/static/images/gql.png'
-          sx={{ width: 45, height: 45 }}
-        />
-      ),
-    },
-    {
-      name: 'Socket.io',
-      icon: (
-        <Avatar
-          alt='Socket.io'
-          src='/static/images/socketio.png'
-          sx={{ width: 45, height: 45 }}
-        />
-      ),
-    },
-    {
-      name: 'Kafka',
-      icon: (
-        <Avatar
-          alt='Kafka'
-          src='/static/images/kafka.png'
-          sx={{ width: 45, height: 45 }}
-        />
-      ),
-    },
-    {
-      name: 'XState',
-      icon: (
-        <Avatar
-          alt='XState'
-          src='/static/images/xstate.svg'
-          sx={{ width: 130, height: 45 }}
-        />
-      ),
-    },
-    {
-      name: 'ExpressJS',
-      icon: (
-        <Avatar
-          alt='ExpressJS'
-          src='/static/images/expressjs.png'
-          sx={{ width: 100, height: 45 }}
-        />
-      ),
-    },
+    { name: 'JavaScript', src: '/static/images/javascript.png' },
+    { name: 'TypeScript', src: '/static/images/typescript.png' },
+    { name: 'Node JS', src: '/static/images/nodejs.png' },
+    { name: 'Express JS', src: '/static/images/expressjs.png' },
+    { name: 'React', src: '/static/images/reactjs.png' },
+    { name: 'Next.js', src: '/static/images/nextjs.jpg' },
+    { name: 'Nest.js', src: '/static/images/nestjs.webp' },
+    { name: 'GraphQL', src: '/static/images/gql.png' },
+    { name: 'Docker', src: '/static/images/docker.png' },
+    { name: 'Git', src: '/static/images/git.png' },
+    { name: 'Socket.IO', src: '/static/images/socketio.png' },
+    { name: 'Kafka', src: '/static/images/kafka.png' },
+    { name: 'gRPC', src: '/static/images/grpc.png' },
+    { name: 'XState', src: '/static/images/xstate.svg' },
+    { name: 'Linux', src: '/static/images/linux.png' },
+    { name: 'RethinkDB', src: '/static/images/rethinkdb.png' },
+    { name: 'C#', src: '/static/images/csharp.png' },
   ];
-  const rows = [
-    techs.slice(0, Math.ceil(techs.length / 2)),
-    techs.slice(Math.ceil(techs.length / 2)),
-  ];
+
   return (
     <Box
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
+        display: 'grid',
+        gridTemplateColumns: {
+          xs: 'repeat(2, 1fr)',
+          sm: 'repeat(3, 1fr)',
+          md: 'repeat(4, 1fr)',
+          lg: 'repeat(6, 1fr)',
+        },
+        gap: 2,
         width: '100%',
-        paddingY: 2,
+        py: 2,
       }}
     >
-      {rows.map((row, rowIndex) => (
-        <Box
-          key={rowIndex}
-          sx={{
-            display: 'flex',
-            overflowX: 'scroll', // Enable horizontal scroll
-            whiteSpace: 'nowrap',
-            marginBottom: 2, // Space between rows
-            '&::-webkit-scrollbar': {
-              display: 'none', // Hide scrollbar for WebKit browsers
-            },
-            msOverflowStyle: 'none', // Hide scrollbar for Internet Explorer and Edge
-            scrollbarWidth: 'none', // Hide scrollbar for Firefox
-          }}
+      {techs.map((t, idx) => (
+        <Item
+          key={t.name + idx}
+          className='hover-lift animate-fade-up'
+          style={{ position: 'relative', overflow: 'hidden' }}
         >
-          {row.map((tech, index) => (
-            <Box key={index} sx={{ minWidth: '200px', marginRight: 2 }}>
-              <Item
-                style={{
-                  textAlign: 'center',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexDirection: 'column',
-                }}
-              >
-                {tech.icon}
-                <Typography variant='subtitle1'>{tech.name}</Typography>
-              </Item>
-            </Box>
-          ))}
-        </Box>
+          {/* grid overlay */}
+          <Box className='bg-grid' sx={{ position: 'absolute', inset: 0, opacity: 0.15 }} />
+          {/* soft glow */}
+          <Box
+            sx={{
+              position: 'absolute',
+              inset: 0,
+              background:
+                'radial-gradient(120px circle at 50% 30%, rgba(124,58,237,0.25), transparent 60%), radial-gradient(120px circle at 50% 70%, rgba(6,182,212,0.15), transparent 60%)',
+              filter: 'blur(6px)',
+            }}
+          />
+
+          {/* content */}
+          <Box
+            sx={{
+              position: 'relative',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 1,
+              py: 1.5,
+            }}
+          >
+            <Avatar alt={t.name} src={t.src} sx={{ width: 56, height: 56 }} />
+            <Typography
+              variant='subtitle2'
+              sx={{ color: 'text.primary', fontWeight: 600, textAlign: 'center' }}
+            >
+              {t.name}
+            </Typography>
+          </Box>
+        </Item>
       ))}
     </Box>
   );

@@ -12,6 +12,9 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Avatar from '@mui/material/Avatar';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import EmailIcon from '@mui/icons-material/Email';
+import PhoneIcon from '@mui/icons-material/Phone';
 
 const pages = [
   { label: 'Home', href: '#home' },
@@ -136,11 +139,41 @@ export default function Header() {
                 component='a'
                 href={page.href}
                 onClick={handleCloseNavMenu}
+                className='hover-lift'
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page.label}
               </Button>
             ))}
+          </Box>
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1.5, ml: 2 }}>
+            <IconButton
+              component='a'
+              href='https://www.linkedin.com/in/kit-mikhael-bagares-1143541a7/'
+              color='inherit'
+              className='hover-lift animate-fade-up'
+              aria-label='LinkedIn'
+            >
+              <LinkedInIcon fontSize='medium' />
+            </IconButton>
+            <IconButton
+              component='a'
+              href='mailto:kityoubagares94@gmail.com'
+              color='inherit'
+              className='hover-lift animate-fade-up'
+              aria-label='Email'
+            >
+              <EmailIcon fontSize='medium' />
+            </IconButton>
+            <IconButton
+              component='a'
+              href='tel:+639454278134'
+              color='inherit'
+              className='hover-lift animate-fade-up'
+              aria-label='Phone'
+            >
+              <PhoneIcon fontSize='medium' />
+            </IconButton>
           </Box>
         </Toolbar>
       </Container>

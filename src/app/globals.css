@@ -66,3 +66,25 @@ body {
   filter: brightness(1.05);
 }
 
+/* New: subtle badge shine and chip pulse */
+@keyframes shine {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.badge-shine {
+  background-image: linear-gradient(90deg, rgba(255,255,255,0.04) 0, rgba(255,255,255,0.13) 50%, rgba(255,255,255,0.04) 100%);
+  background-size: 200% auto;
+}
+.badge-shine:hover {
+  animation: shine 1.2s linear;
+}
+
+@keyframes subtlePulse {
+  0% { box-shadow: 0 0 0px rgba(124,58,237,0.0); }
+  50% { box-shadow: 0 0 12px rgba(124,58,237,0.25); }
+  100% { box-shadow: 0 0 0px rgba(124,58,237,0.0); }
+}
+.chip-animate:hover {
+  animation: subtlePulse 1200ms ease-in-out;
+}
+

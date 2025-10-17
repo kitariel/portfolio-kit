@@ -26,37 +26,38 @@ interface WorkExperience {
 
 const workExperiences: WorkExperience[] = [
   {
-    year: '2022',
-    company: 'DNA Micro Software INC.',
+    year: 'Apr 2022 – Present',
+    company: 'DNA Micro Software Inc.',
     role: 'Senior Lead Full Stack Developer',
     description: `
-      - Lead a dynamic team, fostering strong relationships by understanding individual team members' characters, teaching quality coding practices, and conducting thorough code reviews.
-      - Resolved major issues to support the team and enhance their productivity and work quality.
-      - Created initial services and templates to expedite API development, enabling the team to work efficiently and deliver rapid results.
-      - Interacted with clients to ensure optimal user experience, managing expectations and setting clear limits for functionalities not yet implemented.
+      - Lead a team of 6 developers, collaborating with QA, product managers, and UI/UX to deliver high-quality applications.
+      - Designed and implemented scalable microservice architectures enabling independent development and faster deployments.
+      - Built internal developer platforms and project templates that reduced setup time by ~70%.
+      - Mentored junior engineers, introduced best practices in code quality, testing, and architectural decision-making.
+      - Partnered with clients to define requirements, set expectations, and ensure smooth delivery across multiple projects.
     `,
   },
   {
-    year: '2020',
-    company: 'DNA Micro Software INC.',
+    year: 'Jul 2020 – Apr 2022',
+    company: 'DNA Micro Software Inc.',
     role: 'Software Engineer',
     description: `
-      - Conducted research and development for a template platform to produce smart React applications, dynamically rendered based on database data.
-      - Integrated a major project called GoRentals, a luxury car booking company, into a new template to ensure rapid development based on configuration.
-      - Developed a microservice API using Express, enabling developers to work independently on different modules within the project.
-      - Created monitoring tools for microservices to track and identify errors, providing specific date-based insights for troubleshooting.
+      - Developed a dynamic, template-based React platform that accelerated product rollout across 5+ projects.
+      - Improved API response times by 40% through service optimization and async data handling.
+      - Created microservice APIs with Express.js to enable modular, scalable development and independent team workflows.
+      - Designed real-time monitoring and debugging tools, reducing issue resolution time by over 50%.
+      - Key role integrating the GoRentals luxury car booking platform with reusable architecture patterns.
     `,
   },
   {
-    year: '2019',
-    company: 'Arielus Software Inc. (formerly 3AG Business Solutions Inc)',
+    year: 'Sep 2019 – May 2020',
+    company: 'Arielus Software Inc. (formerly 3AG Business Solutions Inc.)',
     role: 'Software Engineer',
     description: `
-      - Developed and maintained a comprehensive merchant application, managing both client and admin sides to ensure security and functionality.
-      - Implemented features such as location pinning for merchants, dynamic work hours updates, and robust monitoring to prevent malicious content.
-      - Designed and launched the Yaxxi booking service, enabling users to book taxis or private cars with integrated safety measures.
-      - Integrated an admin-side monitoring system to combat fraudulent activities and fake accounts, including OTP verification through Google and other email services.
-      - Created detailed invoices to facilitate accurate payment tracking for customers, supporting both cash and card transactions.
+      - Built full-stack web and mobile apps for merchant and booking services, managing both frontend and backend.
+      - Implemented the Yaxxi booking platform with OTP verification, fraud detection, and admin monitoring dashboards.
+      - Created invoice and payment tracking systems that increased billing accuracy and transaction reliability.
+      - Collaborated cross-functionally to align technical solutions with business goals and ensure on-time delivery.
     `,
   },
 ];

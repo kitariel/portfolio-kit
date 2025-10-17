@@ -19,7 +19,7 @@ export default function Main() {
     <Box padding={1}>
       <Grid container spacing={1} columns={{ xs: 1, sm: 2, md: 3, lg: 4 }}>
         <Grid xs={8} sm={6} md={4} lg={2}>
-          <Item>
+          <Item className='animate-fade-up'>
             <MyName />
             <SocialMediaLinks />
           </Item>
@@ -28,12 +28,12 @@ export default function Main() {
           <MyLocation />
         </Grid>
         <Grid xs={10} sm={8} md={6} lg={4}>
-          <Item>
+          <Item className='animate-fade-up'>
             <MyResume />
           </Item>
         </Grid>
         <Grid xs={10} sm={8} md={6} lg={4}>
-          <Item>
+          <Item className='animate-fade-up'>
             <MySchool />
           </Item>
         </Grid>

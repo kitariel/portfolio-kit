@@ -55,22 +55,29 @@ export default function PortfolioShowcase() {
       {tab === 0 && (
         <Box sx={{ mt: 4, display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(3, 1fr)' }, gap: 2 }}>
           <ProjectCard
-            title='IntervueAI'
-            description='Real-time mock interviews with AI. Natural, personalized conversations without forms.'
-            demo='https://intervueai.example.com'
-            details='https://github.com/kitariel'
+            title='Platform Project Template'
+            description='Modular platform that generates multiple projects from a single template. Setup reduced by ~70%, with reusable modules and CLI tools.'
+            details='https://www.linkedin.com/in/kit-mikhael-bagares-1143541a7/'
           />
           <ProjectCard
-            title='Blendy'
-            description='A social app for real-time connection, one-click login, share moments instantly.'
-            demo='https://blendy.example.com'
-            details='https://github.com/kitariel'
+            title='Skyll Project'
+            description='Comprehensive user portal for Admins, Teachers, and Students powered by the Platform Template; shared components and modular architecture.'
+            details='https://www.linkedin.com/in/kit-mikhael-bagares-1143541a7/'
           />
           <ProjectCard
-            title='WATCHit'
-            description='Streaming app for personal entertainment with a smooth browsing experience.'
-            demo='https://watchit.example.com'
-            details='https://github.com/kitariel'
+            title='GoRentals'
+            description='Luxury car rental platform designed with modular React templates and scalable backend APIs.'
+            details='https://www.linkedin.com/in/kit-mikhael-bagares-1143541a7/'
+          />
+          <ProjectCard
+            title='Yaxxi'
+            description='Secure ride-booking service with admin dashboards, OTP verification, fraud detection, and monitoring.'
+            details='https://www.linkedin.com/in/kit-mikhael-bagares-1143541a7/'
+          />
+          <ProjectCard
+            title='Menid'
+            description='Merchant platform for local stores and restaurants featuring location-based services and dynamic content management.'
+            details='https://www.linkedin.com/in/kit-mikhael-bagares-1143541a7/'
           />
         </Box>
       )}
