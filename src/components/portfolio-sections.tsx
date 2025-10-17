@@ -4,6 +4,7 @@ import {useState, useEffect} from 'react';
 import {Button} from '@/components/ui/button';
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from '@/components/ui/card';
 import {Code2, Database, Globe, Smartphone, Server, Cloud, ExternalLink, Github, Mail, MapPin, Phone, Send} from 'lucide-react';
+import Image from 'next/image';
 
 export function PortfolioSections() {
   const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
@@ -37,20 +38,31 @@ export function PortfolioSections() {
 
   const projects = [
     {
+      title: 'MovieTrending',
+      description: 'Discover the latest trending movies and TV shows with personalized recommendations, popular titles, and newest releases in entertainment.',
+      image: '/static/images/movietrendingapp.png',
+      techs: ['React', 'Next.js', 'TypeScript', 'Movie API'],
+      github: 'https://www.movietrendingtowatch.site/',
+      demo: 'https://www.movietrendingtowatch.site/',
+      isPrivate: false,
+    },
+    {
       title: 'Platform Project Template',
       description: 'Modular platform capable of generating multiple projects from a single template. Reduced setup time by 70% with reusable modules and CLI tools.',
       image: '/api/placeholder/400/250',
-      techs: ['React', 'Node.js', 'CLI Tools', 'Templates'],
+      techs: ['React', 'Next.js', 'Node.js', 'Drizzle', 'Templates', 'Postgres', 'CLI'],
       github: '#',
       demo: '#',
+      isPrivate: true,
     },
     {
       title: 'Skyll Project',
       description: 'Comprehensive user portal (Admins, Teachers, Students) powered by the Platform Project Template with shared components and modular architecture.',
       image: '/api/placeholder/400/250',
-      techs: ['React', 'Platform Template', 'Modular Architecture', 'User Management'],
+      techs: ['React', 'Next.js', 'Node.js', 'Drizzle', 'Templates', 'Postgres', 'CLI'],
       github: '#',
       demo: '#',
+      isPrivate: true,
     },
     {
       title: 'GoRentals',
@@ -59,6 +71,7 @@ export function PortfolioSections() {
       techs: ['React', 'Express.js', 'Modular Templates', 'Booking System'],
       github: '#',
       demo: '#',
+      isPrivate: true,
     },
     {
       title: 'Yaxxi',
@@ -67,6 +80,7 @@ export function PortfolioSections() {
       techs: ['React', 'Node.js', 'OTP Verification', 'Admin Dashboard'],
       github: '#',
       demo: '#',
+      isPrivate: true,
     },
   ];
 
@@ -102,38 +116,52 @@ export function PortfolioSections() {
               </div>
 
               <div className='relative'>
-                <div className='bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl p-8 backdrop-blur-sm border border-slate-700/50'>
-                  <div className='space-y-4'>
-                    <div className='flex justify-between items-center'>
-                      <span className='text-slate-300'>Frontend Development</span>
-                      <span className='text-blue-400 font-semibold'>95%</span>
+                <div className='grid grid-cols-1 sm:grid-cols-2 gap-6'>
+                  <div className='bg-gradient-to-br from-blue-500/10 to-blue-600/20 rounded-xl p-6 backdrop-blur-sm border border-blue-500/20 hover:border-blue-400/40 transition-all duration-300 hover:scale-105'>
+                    <div className='flex items-center space-x-4'>
+                      <div className='w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center'>
+                        <Code2 className='w-6 h-6 text-blue-400' />
+                      </div>
+                      <div>
+                        <h4 className='text-white font-semibold text-lg'>Frontend Development</h4>
+                        <p className='text-blue-200 text-sm'>React, Next.js, TypeScript</p>
+                      </div>
                     </div>
-                    <div className='w-full bg-slate-700 rounded-full h-2'>
-                      <div className='bg-gradient-to-r from-blue-500 to-blue-400 h-2 rounded-full w-[95%]'></div>
-                    </div>
+                  </div>
 
-                    <div className='flex justify-between items-center'>
-                      <span className='text-slate-300'>Backend Development</span>
-                      <span className='text-green-400 font-semibold'>90%</span>
+                  <div className='bg-gradient-to-br from-green-500/10 to-green-600/20 rounded-xl p-6 backdrop-blur-sm border border-green-500/20 hover:border-green-400/40 transition-all duration-300 hover:scale-105'>
+                    <div className='flex items-center space-x-4'>
+                      <div className='w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center'>
+                        <Server className='w-6 h-6 text-green-400' />
+                      </div>
+                      <div>
+                        <h4 className='text-white font-semibold text-lg'>Backend Development</h4>
+                        <p className='text-green-200 text-sm'>Node.js, Nest.js, Express.js</p>
+                      </div>
                     </div>
-                    <div className='w-full bg-slate-700 rounded-full h-2'>
-                      <div className='bg-gradient-to-r from-green-500 to-green-400 h-2 rounded-full w-[90%]'></div>
-                    </div>
+                  </div>
 
-                    <div className='flex justify-between items-center'>
-                      <span className='text-slate-300'>Database Design</span>
-                      <span className='text-purple-400 font-semibold'>85%</span>
+                  <div className='bg-gradient-to-br from-purple-500/10 to-purple-600/20 rounded-xl p-6 backdrop-blur-sm border border-purple-500/20 hover:border-purple-400/40 transition-all duration-300 hover:scale-105'>
+                    <div className='flex items-center space-x-4'>
+                      <div className='w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center'>
+                        <Database className='w-6 h-6 text-purple-400' />
+                      </div>
+                      <div>
+                        <h4 className='text-white font-semibold text-lg'>Database Design</h4>
+                        <p className='text-purple-200 text-sm'>RethinkDB, Redis, MariaDB</p>
+                      </div>
                     </div>
-                    <div className='w-full bg-slate-700 rounded-full h-2'>
-                      <div className='bg-gradient-to-r from-purple-500 to-purple-400 h-2 rounded-full w-[85%]'></div>
-                    </div>
+                  </div>
 
-                    <div className='flex justify-between items-center'>
-                      <span className='text-slate-300'>DevOps & Cloud</span>
-                      <span className='text-orange-400 font-semibold'>80%</span>
-                    </div>
-                    <div className='w-full bg-slate-700 rounded-full h-2'>
-                      <div className='bg-gradient-to-r from-orange-500 to-orange-400 h-2 rounded-full w-[80%]'></div>
+                  <div className='bg-gradient-to-br from-orange-500/10 to-orange-600/20 rounded-xl p-6 backdrop-blur-sm border border-orange-500/20 hover:border-orange-400/40 transition-all duration-300 hover:scale-105'>
+                    <div className='flex items-center space-x-4'>
+                      <div className='w-12 h-12 bg-orange-500/20 rounded-full flex items-center justify-center'>
+                        <Cloud className='w-6 h-6 text-orange-400' />
+                      </div>
+                      <div>
+                        <h4 className='text-white font-semibold text-lg'>DevOps & Cloud</h4>
+                        <p className='text-orange-200 text-sm'>Docker, Kafka, gRPC</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -204,20 +232,30 @@ export function PortfolioSections() {
 
             <div className='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8'>
               {projects.map((project, index) => (
-                <Card key={project.title} className={`bg-slate-800/50 border-slate-700/50 hover:bg-slate-700/50 transition-all duration-300 hover:scale-105 overflow-hidden group ${visibleSections.has('projects') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{transitionDelay: `${index * 200}ms`}}>
-                  <div className='relative overflow-hidden'>
-                    <div className='w-full h-48 bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center'>
-                      <Code2 className='w-16 h-16 text-blue-400' />
+                <Card key={project.title} className={`bg-slate-800/50 border-slate-700/50 hover:bg-slate-700/50 transition-all duration-300 hover:scale-105 overflow-hidden group relative ${visibleSections.has('projects') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{transitionDelay: `${index * 200}ms`}}>
+                  {/* Private Label */}
+                  {project.isPrivate && (
+                    <div className='absolute top-3 right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+                      <span className='bg-red-500/90 text-white text-xs px-2 py-1 rounded-full font-medium'>Private</span>
                     </div>
+                  )}
+
+                  <div className='relative overflow-hidden'>
+                    <div className='w-full h-48 bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center relative'>{project.image && project.image !== '/api/placeholder/400/250' ? <Image src={project.image} alt={project.title} fill className='object-cover' /> : <Code2 className='w-16 h-16 text-blue-400' />}</div>
                     <div className='absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4'>
-                      <Button size='sm' variant='outline' className='text-white border-white hover:bg-white hover:text-black'>
-                        <Github className='w-4 h-4 mr-2' />
-                        Code
-                      </Button>
-                      <Button size='sm' className='bg-blue-600 hover:bg-blue-700'>
-                        <ExternalLink className='w-4 h-4 mr-2' />
-                        Demo
-                      </Button>
+                      {project.isPrivate ? (
+                        <Button size='sm' className='bg-red-600 hover:bg-red-700' onClick={() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'})}>
+                          <Mail className='w-4 h-4 mr-2' />
+                          Private
+                        </Button>
+                      ) : (
+                        <>
+                          <Button size='sm' className='bg-blue-600 hover:bg-blue-700' onClick={() => window.open(project.demo, '_blank')}>
+                            <ExternalLink className='w-4 h-4 mr-2' />
+                            Open
+                          </Button>
+                        </>
+                      )}
                     </div>
                   </div>
                   <CardHeader>
