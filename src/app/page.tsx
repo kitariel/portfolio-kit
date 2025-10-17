@@ -1,13 +1,17 @@
-import Hero from './component/Hero';
-import AboutSection from './component/AboutSection';
-import PortfolioShowcase from './component/PortfolioShowcase';
+import { Header } from "@/components/header"
+import { InteractiveBackground } from "@/components/interactive-background"
+import { HeroSection } from "@/components/hero-section"
+import { PortfolioSections } from "@/components/portfolio-sections"
 
-export default function Home() {
+export default function Page() {
   return (
-    <main>
-      <Hero />
-      <AboutSection />
-      <PortfolioShowcase />
+    <main className="min-h-screen relative">
+      <InteractiveBackground />
+      <div className="relative z-10">
+        <Header />
+        <HeroSection />
+        <PortfolioSections />
+      </div>
     </main>
   );
 }

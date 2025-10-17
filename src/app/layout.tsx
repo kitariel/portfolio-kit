@@ -1,11 +1,17 @@
-import {AppRouterCacheProvider} from '@mui/material-nextjs/v15-appRouter';
-import {ThemeProvider} from '@mui/material/styles';
-import theme from '../theme';
-import Header from './component/Header';
-import CursorGlow from './component/CursorGlow';
-import GridBackground from './component/GridBackground';
 import './globals.css';
-import Footer from './component/Footer';
+import { Inter, JetBrains_Mono } from 'next/font/google';
+
+const inter = Inter({ 
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+});
+
+const jetbrainsMono = JetBrains_Mono({ 
+  subsets: ['latin'],
+  variable: '--font-jetbrains-mono',
+  display: 'swap',
+});
 
 export default function RootLayout(
   props: Readonly<{
@@ -14,17 +20,9 @@ export default function RootLayout(
 ) {
   const {children} = props;
   return (
-    <html lang='en' suppressHydrationWarning>
-      <body className='bg-gradient-to-b from-[#0b0e1a] via-[#0f172a] to-[#0b0e1a]' suppressHydrationWarning>
-        <AppRouterCacheProvider options={{enableCssLayer: true}}>
-          <ThemeProvider theme={theme}>
-            <CursorGlow />
-            <GridBackground />
-            <Header />
-            {children}
-            <Footer />
-          </ThemeProvider>
-        </AppRouterCacheProvider>
+    <html lang='en' suppressHydrationWarning className={`${inter.variable} ${jetbrainsMono.variable}`}>
+      <body className='bg-gradient-to-b from-[#0b0e1a] via-[#0f172a] to-[#0b0e1a] font-inter antialiased' suppressHydrationWarning>
+        {children}
       </body>
     </html>
   );
