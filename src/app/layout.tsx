@@ -1,6 +1,7 @@
 import './globals.css';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import { AnimatedCursor } from '@/components/animated-cursor';
+import { Toaster } from '@/components/ui/toaster';
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -25,6 +26,7 @@ export default function RootLayout(
       <body className='bg-gradient-to-b from-[#0b0e1a] via-[#0f172a] to-[#0b0e1a] font-inter antialiased cursor-none' suppressHydrationWarning>
         <AnimatedCursor />
         {children}
+        <Toaster />
       </body>
     </html>
   );
