@@ -11,6 +11,7 @@ interface Particle {
   opacity: number
   life: number
   maxLife: number
+  type?: 'normal' | 'react'
 }
 
 interface Connection {
@@ -21,12 +22,26 @@ interface Connection {
   opacity: number
 }
 
+interface ReactSymbol {
+  x: number
+  y: number
+  vx: number
+  vy: number
+  rotation: number
+  rotationSpeed: number
+  size: number
+  opacity: number
+  life: number
+  maxLife: number
+}
+
 export function InteractiveBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const animationRef = useRef<number>()
   const mouseRef = useRef({ x: 0, y: 0 })
   const particlesRef = useRef<Particle[]>([])
   const connectionsRef = useRef<Connection[]>([])
+  const reactSymbolsRef = useRef<ReactSymbol[]>([])
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
 
   useEffect(() => {
@@ -87,8 +102,93 @@ export function InteractiveBackground() {
           opacity: 0.8,
           life: 0,
           maxLife: 60,
+          type: 'normal'
         })
       }
+    }
+
+    const createReactSymbol = (mouseX: number, mouseY: number) => {
+      const angle = Math.random() * Math.PI * 2
+      const speed = Math.random() * 3 + 2
+      const distance = Math.random() * 40 + 20
+      
+      reactSymbolsRef.current.push({
+        x: mouseX + Math.cos(angle) * distance,
+        y: mouseY + Math.sin(angle) * distance,
+        vx: Math.cos(angle) * speed * 0.5,
+        vy: Math.sin(angle) * speed * 0.5,
+        rotation: 0,
+        rotationSpeed: (Math.random() - 0.5) * 0.2,
+        size: Math.random() * 20 + 15,
+        opacity: 1,
+        life: 0,
+        maxLife: 120
+      })
+    }
+
+    const updateReactSymbols = () => {
+      reactSymbolsRef.current = reactSymbolsRef.current.filter(symbol => {
+        symbol.x += symbol.vx
+        symbol.y += symbol.vy
+        symbol.rotation += symbol.rotationSpeed
+        symbol.life++
+        
+        // Slow down over time
+        symbol.vx *= 0.98
+        symbol.vy *= 0.98
+        
+        // Fade out over time
+        symbol.opacity = Math.max(0, 1 - (symbol.life / symbol.maxLife))
+        
+        return symbol.life < symbol.maxLife && symbol.opacity > 0.01
+      })
+    }
+
+    const drawReactSymbol = (ctx: CanvasRenderingContext2D, symbol: ReactSymbol) => {
+      ctx.save()
+      ctx.translate(symbol.x, symbol.y)
+      ctx.rotate(symbol.rotation)
+      ctx.globalAlpha = symbol.opacity
+      
+      const size = symbol.size
+      
+      // React logo colors
+      const reactBlue = `rgba(97, 218, 251, ${symbol.opacity})`
+      
+      // Draw React atom symbol
+      ctx.strokeStyle = reactBlue
+      ctx.lineWidth = 2
+      
+      // Center dot
+      ctx.beginPath()
+      ctx.arc(0, 0, size * 0.1, 0, Math.PI * 2)
+      ctx.fillStyle = reactBlue
+      ctx.fill()
+      
+      // Three ellipses
+      for (let i = 0; i < 3; i++) {
+        ctx.save()
+        ctx.rotate((i * Math.PI * 2) / 3)
+        
+        // Ellipse
+        ctx.beginPath()
+        ctx.ellipse(0, 0, size * 0.8, size * 0.3, 0, 0, Math.PI * 2)
+        ctx.stroke()
+        
+        // Electrons
+        const electronAngle = symbol.rotation * 2 + (i * Math.PI * 2) / 3
+        const electronX = Math.cos(electronAngle) * size * 0.8
+        const electronY = Math.sin(electronAngle) * size * 0.3
+        
+        ctx.beginPath()
+        ctx.arc(electronX, electronY, size * 0.05, 0, Math.PI * 2)
+        ctx.fillStyle = reactBlue
+        ctx.fill()
+        
+        ctx.restore()
+      }
+      
+      ctx.restore()
     }
 
     const updateParticles = () => {
@@ -162,6 +262,11 @@ export function InteractiveBackground() {
       ctx.fillStyle = 'rgba(11, 14, 26, 0.1)'
       ctx.fillRect(0, 0, dimensions.width, dimensions.height)
       
+      // Draw React symbols
+      reactSymbolsRef.current.forEach(symbol => {
+        drawReactSymbol(ctx, symbol)
+      })
+      
       // Draw connections
       connectionsRef.current.forEach(connection => {
         ctx.beginPath()
@@ -202,6 +307,7 @@ export function InteractiveBackground() {
 
     const animate = () => {
       updateParticles()
+      updateReactSymbols()
       updateConnections()
       draw()
       animationRef.current = requestAnimationFrame(animate)
@@ -215,6 +321,11 @@ export function InteractiveBackground() {
       // Create particles on mouse movement
       if (Math.random() < 0.3) {
         createMouseParticles(mouseRef.current.x, mouseRef.current.y)
+      }
+      
+      // Create React symbols on mouse movement (less frequent)
+      if (Math.random() < 0.15) {
+        createReactSymbol(mouseRef.current.x, mouseRef.current.y)
       }
     }
 

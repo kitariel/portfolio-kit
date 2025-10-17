@@ -1,5 +1,6 @@
 import './globals.css';
 import { Inter, JetBrains_Mono } from 'next/font/google';
+import { AnimatedCursor } from '@/components/animated-cursor';
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -21,7 +22,8 @@ export default function RootLayout(
   const {children} = props;
   return (
     <html lang='en' suppressHydrationWarning className={`${inter.variable} ${jetbrainsMono.variable}`}>
-      <body className='bg-gradient-to-b from-[#0b0e1a] via-[#0f172a] to-[#0b0e1a] font-inter antialiased' suppressHydrationWarning>
+      <body className='bg-gradient-to-b from-[#0b0e1a] via-[#0f172a] to-[#0b0e1a] font-inter antialiased cursor-none' suppressHydrationWarning>
+        <AnimatedCursor />
         {children}
       </body>
     </html>

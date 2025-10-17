@@ -28,8 +28,8 @@ export function HeroSection() {
           <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="relative mx-auto w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 mb-8 flex items-center justify-center">
               <RubikCube 
-                size={typeof window !== 'undefined' && window.innerWidth >= 1024 ? 192 : window.innerWidth >= 640 ? 160 : 128}
-                className="animate-pulse"
+                size={160}
+                className="animate-pulse w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48"
               />
               {/* Floating elements around cube */}
               <div className="absolute -top-2 -right-2 w-6 h-6 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0s' }} />
