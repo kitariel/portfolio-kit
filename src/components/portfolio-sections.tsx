@@ -97,6 +97,16 @@ export function PortfolioSections() {
 
   const projects = [
     {
+      title: 'GymWebs',
+      description: 'AI-Powered Workout Planning Platform. GymWebs is a modern fitness SaaS platform that empowers gym-goers to build, customize, and optimize structured workout programs with AI assistance.',
+      techs: ['Next.js', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'Vercel', 'OpenAI', 'Claude API'],
+      github: '#',
+      demo: 'https://gympepz.vercel.app/',
+      isPrivate: false,
+      // gympepz.png
+      image: '/static/images/gympepz.png',
+    },
+    {
       title: 'MovieTrending',
       description: 'Discover the latest trending movies and TV shows with personalized recommendations, popular titles, and newest releases in entertainment.',
       image: '/static/images/movietrendingapp.png',
