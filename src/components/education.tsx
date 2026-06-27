@@ -1,145 +1,81 @@
-'use client'
+'use client';
 
-import { useState, useEffect } from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { GraduationCap, Calendar, MapPin, Award, BookOpen } from 'lucide-react'
+import {GraduationCap, Calendar, MapPin} from 'lucide-react';
+import {cn} from '@/lib/utils';
+import {useReveal} from '@/hooks/use-reveal';
+import {SectionHeading} from '@/components/section-heading';
+
+const education = [
+  {
+    degree: 'BS in Computer Engineering',
+    specialization: 'Software Engineering',
+    institution: 'University of San Carlos',
+    location: 'Cebu, Philippines',
+    period: '2011 – 2019',
+    highlights: [
+      'Software Engineering specialization',
+      'Computer systems architecture',
+      'Programming & algorithm design',
+      'Database management systems',
+    ],
+  },
+  {
+    degree: 'High School Diploma',
+    institution: 'Sogod National High School',
+    location: 'Sogod, Philippines',
+    period: '2007 – 2011',
+    highlights: ['Mathematics & sciences', 'Analytical problem solving', 'Academic excellence', 'Leadership activities'],
+  },
+];
 
 export function Education() {
-  const [visibleSections, setVisibleSections] = useState(new Set())
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const sectionId = entry.target.getAttribute('data-section')
-            if (sectionId) {
-              setVisibleSections(prev => new Set([...prev, sectionId]))
-            }
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-
-    const sections = document.querySelectorAll('[data-section]')
-    sections.forEach((section) => observer.observe(section))
-
-    return () => observer.disconnect()
-  }, [])
-
-  const education = [
-    {
-      degree: 'Bachelor of Science in Computer Engineering',
-      specialization: 'Software Engineering',
-      institution: 'University of San Carlos',
-      location: 'Cebu, Philippines',
-      period: '2011 – 2019',
-      type: 'University',
-      description: 'Comprehensive program covering software engineering principles, computer systems, and programming methodologies.',
-      highlights: [
-        'Software Engineering Specialization',
-        'Computer Systems Architecture',
-        'Programming & Algorithm Design',
-        'Database Management Systems',
-        'Software Project Management'
-      ]
-    },
-    {
-      degree: 'High School Diploma',
-      institution: 'Sogod National High School',
-      location: 'Sogod, Philippines',
-      period: '2007 – 2011',
-      type: 'High School',
-      description: 'Strong foundation in mathematics, sciences, and analytical thinking.',
-      highlights: [
-        'Mathematics & Sciences',
-        'Analytical Problem Solving',
-        'Academic Excellence',
-        'Leadership Activities'
-      ]
-    }
-  ]
+  const {ref, shown} = useReveal();
 
   return (
-    <section 
-      id="education" 
-      data-section="education"
-      className="py-20 px-4 sm:px-6 lg:px-8 relative"
-    >
-      <div className="container mx-auto max-w-6xl">
-        <div className={`transition-all duration-1000 ${visibleSections.has('education') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
-              Education
-            </h2>
-            <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-              Academic foundation that shaped my engineering mindset
-            </p>
-          </div>
+    <section id="education" className="relative px-6 py-24 sm:py-28">
+      <div className="mx-auto max-w-5xl">
+        <SectionHeading eyebrow="Education" title="Where the engineering mindset started" />
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {education.map((edu, index) => (
-              <Card 
-                key={`${edu.institution}-${edu.period}`}
-                className={`bg-slate-800/50 border-slate-700/50 hover:bg-slate-700/30 transition-all duration-500 hover:scale-105 hover:border-blue-500/50 ${visibleSections.has('education') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-                style={{ transitionDelay: `${index * 200}ms` }}
-              >
-                <CardHeader>
-                  <div className="flex items-start gap-3">
-                    <div className="p-2 bg-blue-500/20 rounded-lg">
-                      <GraduationCap className="w-6 h-6 text-blue-400" />
-                    </div>
-                    <div className="flex-1 space-y-2">
-                      <CardTitle className="text-lg text-white leading-tight">
-                        {edu.degree}
-                        {edu.specialization && (
-                          <span className="block text-sm text-blue-400 font-normal mt-1">
-                            {edu.specialization}
-                          </span>
-                        )}
-                      </CardTitle>
-                      <CardDescription className="text-slate-300 font-medium">
-                        {edu.institution}
-                      </CardDescription>
-                      <div className="flex flex-col sm:flex-row gap-2 text-sm text-slate-400">
-                        <div className="flex items-center gap-1">
-                          <Calendar className="w-4 h-4" />
-                          {edu.period}
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <MapPin className="w-4 h-4" />
-                          {edu.location}
-                        </div>
-                      </div>
-                    </div>
+        <div ref={ref} className="mt-16 grid grid-cols-1 gap-5 lg:grid-cols-2">
+          {education.map((edu, index) => (
+            <article
+              key={edu.institution}
+              className={cn(
+                'card-clean p-6 sm:p-7 transition-all duration-700',
+                shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              )}
+              style={{transitionDelay: `${index * 120}ms`}}
+            >
+              <div className="flex items-start gap-3">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-violet-300">
+                  <GraduationCap className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold leading-tight text-white">{edu.degree}</h3>
+                  {edu.specialization && <p className="mt-0.5 text-sm text-cyan-300/90">{edu.specialization}</p>}
+                  <p className="mt-1 text-sm text-slate-400">{edu.institution}</p>
+                  <div className="mt-2 flex flex-col gap-1.5 text-xs text-slate-500 sm:flex-row sm:gap-4">
+                    <span className="inline-flex items-center gap-1.5">
+                      <Calendar className="h-3.5 w-3.5" /> {edu.period}
+                    </span>
+                    <span className="inline-flex items-center gap-1.5">
+                      <MapPin className="h-3.5 w-3.5" /> {edu.location}
+                    </span>
                   </div>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <p className="text-slate-300 text-sm leading-relaxed">
-                    {edu.description}
-                  </p>
-                  
-                  <div>
-                    <h4 className="text-white font-medium mb-3 flex items-center gap-2">
-                      <BookOpen className="w-4 h-4 text-green-400" />
-                      Key Areas
-                    </h4>
-                    <div className="grid grid-cols-1 gap-2">
-                      {edu.highlights.map((highlight, highlightIndex) => (
-                        <div key={highlightIndex} className="flex items-center gap-2 text-slate-300 text-sm">
-                          <Award className="w-3 h-3 text-green-400 flex-shrink-0" />
-                          {highlight}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                </div>
+              </div>
+
+              <div className="mt-5 flex flex-wrap gap-1.5">
+                {edu.highlights.map((highlight) => (
+                  <span key={highlight} className="rounded-md border border-white/10 bg-white/[0.03] px-2.5 py-0.5 text-xs text-slate-400">
+                    {highlight}
+                  </span>
+                ))}
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
-  )
+  );
 }

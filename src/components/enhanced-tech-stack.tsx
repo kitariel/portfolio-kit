@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import {SectionHeading} from '@/components/section-heading'
 
 interface TechItem {
   name: string
@@ -255,51 +256,28 @@ const techStack: TechItem[] = [
 export default function EnhancedTechStack() {
 
   return (
-    <section 
-      id="all-technologies" 
-      className="py-20 px-4 sm:px-6 lg:px-8 relative"
-    >
-      <div className="container mx-auto max-w-6xl">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
-            All Technologies
-          </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-            Complete overview of technologies I work with
-          </p>
-        </div>
+    <section id="stack" className="relative px-6 py-24 sm:py-28">
+      <div className="mx-auto max-w-6xl">
+        <SectionHeading
+          eyebrow="Engineering stack"
+          title="The foundation underneath the AI"
+          subtitle="AI accelerates the work — these are the tools and technologies the craft is actually built on, from 5+ years in production."
+        />
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-          {techStack.map((tech, index) => (
-            <div
+        <div className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+          {techStack.map((tech) => (
+            <a
               key={tech.name}
-              className="group relative transition-all duration-300 opacity-100 translate-y-0"
-              style={{ 
-                animationDelay: `${index * 100}ms`
-              }}
+              href={tech.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card-clean group flex flex-col items-center gap-3 p-4"
             >
-              <a
-                href={tech.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block p-4 rounded-xl bg-slate-800/50 hover:bg-slate-700/50 transition-all duration-300 hover:scale-105 hover:shadow-xl border border-slate-700/50 hover:border-slate-500/50"
-              >
-                <div className="flex flex-col items-center gap-3">
-                  <div className="relative">
-                    {tech.icon}
-                    <div className="absolute inset-0 bg-gradient-to-t from-transparent to-white/5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
-                  </div>
-                  <span className={`text-sm font-medium text-center leading-tight ${tech.color || 'text-slate-300'} group-hover:text-white transition-colors`}>
-                    {tech.name}
-                  </span>
-                </div>
-              </a>
-
-              {/* Ripple Effect */}
-              <div className="absolute inset-0 rounded-xl overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-purple-500/20 scale-0 group-hover:scale-100 transition-transform duration-300 rounded-xl"></div>
-              </div>
-            </div>
+              <div className="relative">{tech.icon}</div>
+              <span className="text-center text-sm font-medium leading-tight text-slate-400 transition-colors group-hover:text-white">
+                {tech.name}
+              </span>
+            </a>
           ))}
         </div>
       </div>

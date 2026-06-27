@@ -2,9 +2,23 @@
 
 import {useEffect, useState} from 'react';
 import {Button} from '@/components/ui/button';
-import {ArrowDown, Github, Linkedin, Mail, Download} from 'lucide-react';
-import RubikCube from './rubik-cube';
-import TypewriterText from './typewriter-text';
+import {ArrowRight, Download, Github, Linkedin, Mail, MapPin} from 'lucide-react';
+import {cn} from '@/lib/utils';
+import {AccentPill} from '@/components/accent-pill';
+
+const tools = ['Claude', 'Codex', 'Gemini'];
+
+const stats = [
+  {value: '10×', label: 'faster delivery with AI'},
+  {value: '6', label: 'AI-era skills'},
+  {value: '5+', label: 'years shipping products'},
+];
+
+const socials = [
+  {icon: Github, href: 'https://github.com/kitariel', label: 'GitHub'},
+  {icon: Linkedin, href: 'https://www.linkedin.com/in/kit-mikhael-bagares-1143541a7', label: 'LinkedIn'},
+  {icon: Mail, href: 'mailto:kityoubagares94@gmail.com', label: 'Email'},
+];
 
 export function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -14,75 +28,98 @@ export function HeroSection() {
   }, []);
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({behavior: 'smooth'});
-    }
+    document.querySelector(href)?.scrollIntoView({behavior: 'smooth'});
   };
 
+  const show = (delay: string) =>
+    cn('transition-all duration-700', delay, isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6');
+
   return (
-    <section id='home' className='relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8'>
-      <div className='container mx-auto max-w-6xl'>
-        <div className='text-center space-y-8'>
-          {/* Avatar */}
-          <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className='relative mx-auto w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 mb-8 flex items-center justify-center'>
-              <RubikCube size={160} className='animate-pulse w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48' />
-              {/* Floating elements around cube */}
-              <div className='absolute -top-2 -right-2 w-6 h-6 bg-blue-500 rounded-full animate-bounce' style={{animationDelay: '0s'}} />
-              <div className='absolute -bottom-2 -left-2 w-4 h-4 bg-purple-500 rounded-full animate-bounce' style={{animationDelay: '0.5s'}} />
-              <div className='absolute top-1/2 -left-4 w-3 h-3 bg-green-500 rounded-full animate-bounce' style={{animationDelay: '1s'}} />
-            </div>
-          </div>
-
-          {/* Name and Title */}
-          <div className={`transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h1 className='text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-4 font-inter'>Kit Mikhael Bagares</h1>
-            <div className='relative'>
-              <TypewriterText text='<Full-Stack Developer />' className='text-xl sm:text-2xl lg:text-3xl text-blue-400 mb-4 font-jetbrains' delay={1000} loop={true} pauseDuration={3000} />
-            </div>
-            <p className='text-base sm:text-lg text-slate-300 mb-6'>📍 Consolacion City, Cebu, Philippines</p>
-          </div>
-
-          <div className={`space-y-6 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <p className='text-lg sm:text-xl text-slate-400 max-w-4xl mx-auto leading-relaxed'>Innovative and results-driven Full-Stack Developer with 5+ years of experience in designing scalable architectures, building developer platforms, and leading high-performing teams. Passionate about crafting robust software ecosystems that empower developers and enhance user experience.</p>
-
-            {/* Tech Stack Pills */}
-            <div className='flex flex-wrap justify-center gap-3 mt-8'>
-              {['React', 'Next.js', 'TypeScript', 'Node.js', 'Nest.js', 'Microservices', 'GraphQL', 'Docker'].map((tech, index) => (
-                <span key={tech} className={`px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-full text-sm text-slate-300 transition-all duration-300 hover:bg-slate-700/50 hover:border-blue-500/50 hover:text-white ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{transitionDelay: `${600 + index * 100}ms`}}>
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* CTA Buttons */}
-          <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <Button onClick={() => scrollToSection('#projects')} className='bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full text-lg font-medium transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-blue-500/25'>
-              View My Work
-            </Button>
-            <Button variant='outline' onClick={() => scrollToSection('#contact')} className='border-slate-600 text-slate-300 hover:bg-slate-800 hover:text-white px-8 py-3 rounded-full text-lg font-medium transition-all duration-200 hover:scale-105'>
-              <Download className='w-5 h-5 mr-2' />
-              Download CV
-            </Button>
-          </div>
-
-          {/* Social Links */}
-          <div className={`flex justify-center space-x-6 transition-all duration-1000 delay-900 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            {[
-              {icon: Github, href: '#', label: 'GitHub'},
-              {icon: Linkedin, href: 'https://www.linkedin.com/in/kit-mikhael-bagares-1143541a7', label: 'LinkedIn'},
-              {icon: Mail, href: 'mailto:kityoubagares94@gmail.com', label: 'Email'},
-            ].map(({icon: Icon, href, label}) => (
-              <button key={label} onClick={() => (href.startsWith('#') ? scrollToSection(href) : window.open(href, '_blank'))} className='p-3 text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-full transition-all duration-200 hover:scale-110' aria-label={label}>
-                <Icon className='w-6 h-6' />
-              </button>
-            ))}
-          </div>
-
-          {/* Scroll Indicator */}
+    <section id="home" className="relative flex min-h-[92vh] items-center justify-center px-6 pt-28 pb-20">
+      <div className="mx-auto max-w-3xl text-center">
+        {/* Status pill */}
+        <div className={show('delay-0')}>
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 text-sm text-slate-300">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+            </span>
+            Open to AI-augmented engineering roles
+          </span>
         </div>
+
+        {/* Name */}
+        <h1 className={cn('mt-8 text-4xl sm:text-6xl lg:text-7xl font-semibold tracking-tight text-white', show('delay-100'))}>
+          Kit Mikhael Bagares
+        </h1>
+
+        {/* Role */}
+        <p className={cn('mt-4 text-2xl sm:text-3xl font-medium text-slate-300', show('delay-200'))}>
+          Full-Stack Engineer, <span className="text-gradient">AI-Augmented</span>
+        </p>
+
+        {/* Tagline */}
+        <p className={cn('mx-auto mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-slate-400', show('delay-300'))}>
+          5+ years building production software — now shipping in hours what used to take weeks, by orchestrating{' '}
+          <span className="text-slate-200">models, agents, skills &amp; workflows</span> instead of writing every line by hand.
+        </p>
+
+        {/* Tools */}
+        <div className={cn('mt-7 flex flex-wrap items-center justify-center gap-2', show('delay-500'))}>
+          <span className="eyebrow mr-1 text-slate-500">Daily drivers</span>
+          {tools.map((tool) => (
+            <AccentPill key={tool}>{tool}</AccentPill>
+          ))}
+        </div>
+
+        {/* CTAs */}
+        <div className={cn('mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row', show('delay-700'))}>
+          <Button
+            onClick={() => scrollToSection('#workflow')}
+            className="group bg-gradient-to-r from-violet-500 to-cyan-500 px-7 py-6 text-base font-medium text-white shadow-lg shadow-violet-500/20 hover:opacity-95"
+          >
+            See how I work
+            <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+          </Button>
+          <Button
+            variant="outline"
+            onClick={() => window.open('/static/resume/KitMikhaelBagaresNewResume.pdf', '_blank')}
+            className="border-white/15 bg-transparent px-7 py-6 text-base font-medium text-slate-200 hover:bg-white/5 hover:text-white"
+          >
+            <Download className="mr-1 h-4 w-4" />
+            Download CV
+          </Button>
+        </div>
+
+        {/* Socials + location */}
+        <div className={cn('mt-8 flex items-center justify-center gap-1', show('delay-1000'))}>
+          {socials.map(({icon: Icon, href, label}) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+              className="rounded-full p-2.5 text-slate-400 transition-colors hover:bg-white/5 hover:text-white"
+            >
+              <Icon className="h-5 w-5" />
+            </a>
+          ))}
+          <span className="ml-2 inline-flex items-center gap-1.5 text-sm text-slate-500">
+            <MapPin className="h-4 w-4" />
+            Cebu, Philippines
+          </span>
+        </div>
+
+        {/* Stats */}
+        <dl className={cn('mx-auto mt-14 grid max-w-xl grid-cols-3 gap-4', show('delay-1000'))}>
+          {stats.map((stat) => (
+            <div key={stat.label} className="card-clean px-3 py-5">
+              <dt className="text-2xl sm:text-3xl font-semibold text-white">{stat.value}</dt>
+              <dd className="mt-1 text-xs sm:text-sm text-slate-400">{stat.label}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );

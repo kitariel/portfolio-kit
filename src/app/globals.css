@@ -16,12 +16,8 @@
   }
 }
 
-* {
-  cursor: none !important;
-}
-
-html { 
-  scroll-behavior: smooth; 
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -203,6 +199,61 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+/* ===== Clean AI-era design system ===== */
+
+/* Monospace eyebrow / kicker labels */
+.eyebrow {
+  font-family: var(--font-jetbrains-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.72rem;
+  line-height: 1;
+}
+
+/* Reusable clean surface (replaces busy slate cards) */
+.card-clean {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 1rem;
+  transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
+}
+.card-clean:hover {
+  border-color: rgba(167, 139, 250, 0.35);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+/* Subtle fixed grid + glow backdrop for the whole page */
+.app-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 55% at 50% 0%, #000 25%, transparent 80%);
+  mask-image: radial-gradient(ellipse 75% 55% at 50% 0%, #000 25%, transparent 80%);
+}
+
+/* Animated dashed connector for the AI workflow flow */
+.flow-line {
+  background-image: linear-gradient(90deg, rgba(167, 139, 250, 0.55) 0 7px, transparent 7px 15px);
+  background-size: 15px 100%;
+  animation: flowMove 1.1s linear infinite;
+}
+.flow-line-v {
+  background-image: linear-gradient(180deg, rgba(167, 139, 250, 0.55) 0 7px, transparent 7px 15px);
+  background-size: 100% 15px;
+  animation: flowMoveV 1.1s linear infinite;
+}
+@keyframes flowMove {
+  to { background-position: 15px 0; }
+}
+@keyframes flowMoveV {
+  to { background-position: 0 15px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow-line, .flow-line-v { animation: none; }
 }
 
 @layer base {
