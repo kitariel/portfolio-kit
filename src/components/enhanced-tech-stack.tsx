@@ -1,7 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import {SectionHeading} from '@/components/section-heading'
+import {Marquee} from '@/components/motion/marquee'
+import {Reveal} from '@/components/motion/reveal'
 
 interface TechItem {
   name: string
@@ -25,7 +26,7 @@ const techStack: TechItem[] = [
       />
     ),
     url: 'https://nextjs.org/',
-    color: 'text-white'
+    color: 'text-cream'
   },
   {
     name: 'NestJS',
@@ -207,7 +208,7 @@ const techStack: TechItem[] = [
       />
     ),
     url: 'https://socket.io/',
-    color: 'text-white'
+    color: 'text-cream'
   },
   {
     name: 'Kafka',
@@ -253,34 +254,43 @@ const techStack: TechItem[] = [
   }
 ]
 
+/**
+ * Demoted from a full section to a marquee strip. The stack is supporting
+ * evidence, not a headline act -- giving it a whole screen slowed the page down
+ * right where the work should be building momentum.
+ */
 export default function EnhancedTechStack() {
-
   return (
-    <section id="stack" className="relative px-6 py-24 sm:py-28">
-      <div className="mx-auto max-w-6xl">
-        <SectionHeading
-          eyebrow="Engineering stack"
-          title="The foundation underneath the AI"
-          subtitle="AI accelerates the work — these are the tools and technologies the craft is actually built on, from 5+ years in production."
-        />
-
-        <div className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-          {techStack.map((tech) => (
-            <a
-              key={tech.name}
-              href={tech.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="card-clean group flex flex-col items-center gap-3 p-4"
-            >
-              <div className="relative">{tech.icon}</div>
-              <span className="text-center text-sm font-medium leading-tight text-slate-400 transition-colors group-hover:text-white">
-                {tech.name}
-              </span>
-            </a>
-          ))}
-        </div>
+    <section id="stack" className="relative overflow-hidden py-20 sm:py-24">
+      <div className="mx-auto mb-10 max-w-7xl px-6">
+        <Reveal className="flex flex-col gap-3 text-center">
+          <span className="eyebrow inline-flex items-center justify-center gap-2 text-ember">
+            <span className="h-px w-6 bg-gradient-to-r from-ember to-crema" />
+            Engineering stack
+          </span>
+          <p className="mx-auto max-w-2xl text-base text-cream-muted text-pretty">
+            AI accelerates the work — these are the tools the craft is actually built on, from 5+ years in
+            production.
+          </p>
+        </Reveal>
       </div>
+
+      <Marquee speed={55}>
+        {techStack.map((tech) => (
+          <a
+            key={tech.name}
+            href={tech.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group mx-2 flex shrink-0 items-center gap-3 rounded-xl border border-crema/10 bg-portafilter/50 px-5 py-4 backdrop-blur-sm transition-colors hover:border-ember/35"
+          >
+            <span className="relative flex items-center">{tech.icon}</span>
+            <span className="whitespace-nowrap font-jetbrains text-sm text-cream-muted transition-colors group-hover:text-cream">
+              {tech.name}
+            </span>
+          </a>
+        ))}
+      </Marquee>
     </section>
   )
 }

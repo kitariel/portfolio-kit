@@ -19,54 +19,59 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, {passive: true});
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (href: string) => {
-    document.querySelector(href)?.scrollIntoView({behavior: 'smooth'});
-    setIsMobileMenuOpen(false);
-  };
+  // Close the drawer on Escape, and stop the page scrolling behind it.
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setIsMobileMenuOpen(false);
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [isMobileMenuOpen]);
 
   return (
     <>
       <header
         className={cn(
-          'fixed inset-x-0 top-0 z-50 transition-all duration-300',
-          isScrolled ? 'border-b border-white/10 bg-[#0b0e1a]/80 backdrop-blur-md' : 'border-b border-transparent'
+          'fixed inset-x-0 top-0 z-50 transition-all duration-500',
+          isScrolled ? 'border-b border-grounds bg-roast/80 backdrop-blur-xl' : 'border-b border-transparent'
         )}
       >
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="flex h-16 items-center justify-between">
-            <button onClick={() => scrollToSection('#home')} className="font-jetbrains text-lg font-semibold text-white transition-colors hover:text-violet-300">
-              kit<span className="text-violet-400">.dev</span>
-            </button>
+        <div className='mx-auto max-w-7xl px-6'>
+          <div className='flex h-16 items-center justify-between'>
+            <a
+              href='#home'
+              className='font-jetbrains text-lg font-semibold text-cream transition-colors hover:text-ember'
+            >
+              kit<span className='text-ember'>.dev</span>
+            </a>
 
-            <nav className="hidden items-center gap-8 md:flex">
+            <nav className='hidden items-center gap-8 md:flex'>
               {navItems.map((item) => (
-                <button
+                <a
                   key={item.name}
-                  onClick={() => scrollToSection(item.href)}
-                  className="text-sm font-medium text-slate-400 transition-colors hover:text-white"
+                  href={item.href}
+                  className='text-sm font-medium text-cream-muted transition-colors hover:text-cream'
                 >
                   {item.name}
-                </button>
+                </a>
               ))}
             </nav>
 
-            <div className="hidden md:flex">
-              <Button
-                onClick={() => scrollToSection('#contact')}
-                className="bg-gradient-to-r from-violet-500 to-cyan-500 px-5 text-white hover:opacity-95"
-              >
-                Let&apos;s talk
+            <div className='hidden md:flex'>
+              <Button asChild className='bg-ember px-5 text-roast hover:bg-ember-soft'>
+                <a href='#contact'>Let&apos;s talk</a>
               </Button>
             </div>
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-slate-300 transition-colors hover:text-white md:hidden"
-              aria-label="Toggle menu"
+              className='p-2 text-cream-muted transition-colors hover:text-cream md:hidden'
+              aria-label='Toggle menu'
+              aria-expanded={isMobileMenuOpen}
             >
               {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
@@ -75,25 +80,25 @@ export function Header() {
       </header>
 
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-40 md:hidden">
-          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsMobileMenuOpen(false)} />
-          <div className="fixed inset-x-0 top-16 border-b border-white/10 bg-[#0b0e1a]/95 backdrop-blur-md">
-            <nav className="mx-auto max-w-6xl px-6 py-6">
-              <div className="flex flex-col gap-1">
+        <div className='fixed inset-0 z-40 md:hidden'>
+          <div className='fixed inset-0 bg-roast/80 backdrop-blur-sm' onClick={() => setIsMobileMenuOpen(false)} />
+          <div className='fixed inset-x-0 top-16 border-b border-grounds bg-roast/95 backdrop-blur-xl'>
+            <nav className='mx-auto max-w-7xl px-6 py-6'>
+              <div className='flex flex-col gap-1'>
                 {navItems.map((item) => (
-                  <button
+                  <a
                     key={item.name}
-                    onClick={() => scrollToSection(item.href)}
-                    className="rounded-lg px-2 py-2.5 text-left text-base text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
+                    href={item.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className='rounded-lg px-2 py-2.5 text-left text-base text-cream-muted transition-colors hover:bg-crema/5 hover:text-cream'
                   >
                     {item.name}
-                  </button>
+                  </a>
                 ))}
-                <Button
-                  onClick={() => scrollToSection('#contact')}
-                  className="mt-3 w-full bg-gradient-to-r from-violet-500 to-cyan-500 py-3 text-white"
-                >
-                  Let&apos;s talk
+                <Button asChild className='mt-3 w-full bg-ember py-3 text-roast hover:bg-ember-soft'>
+                  <a href='#contact' onClick={() => setIsMobileMenuOpen(false)}>
+                    Let&apos;s talk
+                  </a>
                 </Button>
               </div>
             </nav>

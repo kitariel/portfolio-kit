@@ -1,9 +1,8 @@
 'use client';
 
 import {Sparkles, Gem, Layers, Gauge, Bot, Workflow, type LucideIcon} from 'lucide-react';
-import {cn} from '@/lib/utils';
-import {useReveal} from '@/hooks/use-reveal';
 import {SectionHeading} from '@/components/section-heading';
+import {Reveal} from '@/components/motion/reveal';
 
 interface Skill {
   icon: LucideIcon;
@@ -51,36 +50,29 @@ const skills: Skill[] = [
 ];
 
 export function AISkills() {
-  const {ref, shown} = useReveal();
-
   return (
-    <section id="skills" className="relative px-6 py-24 sm:py-28">
-      <div className="mx-auto max-w-6xl">
+    <section id='skills' className='relative px-6 py-28 sm:py-36'>
+      <div className='mx-auto max-w-7xl'>
         <SectionHeading
-          eyebrow="01 — The new fundamentals"
-          title="The 6 skills that matter in the AI era"
+          eyebrow='01 — The new fundamentals'
+          title='The 6 skills that matter in the AI era'
           subtitle="Framework expertise is table stakes now — the leverage moved up the stack. These are the skills I've sharpened to build with AI instead of around it."
         />
 
-        <div ref={ref} className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className='mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3'>
           {skills.map((skill, index) => (
-            <article
-              key={skill.name}
-              className={cn(
-                'card-clean group p-6 transition-all duration-700',
-                shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-              )}
-              style={{transitionDelay: `${index * 90}ms`}}
-            >
-              <div className="flex items-center justify-between">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-violet-300 transition-colors group-hover:border-violet-400/40 group-hover:text-violet-200">
-                  <skill.icon className="h-5 w-5" />
+            <Reveal key={skill.name} delay={index * 0.08}>
+              <article className='card-clean group h-full bg-portafilter/50 p-6 backdrop-blur-sm'>
+                <div className='flex items-center justify-between'>
+                  <div className='flex h-11 w-11 items-center justify-center rounded-xl border border-crema/10 bg-crema/[0.03] text-ember transition-colors group-hover:border-ember/40 group-hover:text-ember-soft'>
+                    <skill.icon className='h-5 w-5' />
+                  </div>
+                  <span className='font-jetbrains text-sm text-cream-faint'>0{index + 1}</span>
                 </div>
-                <span className="font-jetbrains text-sm text-slate-600">0{index + 1}</span>
-              </div>
-              <h3 className="mt-5 text-lg font-semibold text-white">{skill.name}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-400">{skill.description}</p>
-            </article>
+                <h3 className='mt-5 font-display text-lg font-semibold text-cream'>{skill.name}</h3>
+                <p className='mt-2 text-sm leading-relaxed text-cream-muted'>{skill.description}</p>
+              </article>
+            </Reveal>
           ))}
         </div>
       </div>
