@@ -1,19 +1,36 @@
 import './globals.css';
-import {Inter, JetBrains_Mono} from 'next/font/google';
-import {Toaster} from '@/components/ui/toaster';
+import type {Metadata, Viewport} from 'next';
+import {Instrument_Sans, IBM_Plex_Mono} from 'next/font/google';
 import {Analytics} from '@vercel/analytics/next';
 
-const inter = Inter({
+const display = Instrument_Sans({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-display',
   display: 'swap',
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const mono = IBM_Plex_Mono({
   subsets: ['latin'],
-  variable: '--font-jetbrains-mono',
+  weight: ['400', '500'],
+  variable: '--font-mono',
   display: 'swap',
 });
+
+export const metadata: Metadata = {
+  title: 'Kit Mikhael Bagares — Senior Full-Stack Engineer',
+  description:
+    'Senior full-stack engineer in Cebu, Philippines. I design and ship production systems — web, mobile, and the infrastructure behind them.',
+  openGraph: {
+    title: 'Kit Mikhael Bagares — Senior Full-Stack Engineer',
+    description:
+      'I design and ship production systems — web, mobile, and the infrastructure behind them.',
+    type: 'website',
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: '#EEE9DF',
+};
 
 export default function RootLayout(
   props: Readonly<{
@@ -21,12 +38,12 @@ export default function RootLayout(
   }>
 ) {
   const {children} = props;
+
   return (
-    <html lang='en' suppressHydrationWarning className={`${inter.variable} ${jetbrainsMono.variable}`}>
-      <body className='bg-gradient-to-b from-[#0b0e1a] via-[#0f172a] to-[#0b0e1a] font-inter antialiased text-slate-200 selection:bg-violet-500/30 selection:text-white' suppressHydrationWarning>
+    <html lang="en" className={`${display.variable} ${mono.variable}`} suppressHydrationWarning>
+      <body suppressHydrationWarning>
         {children}
         <Analytics />
-        <Toaster />
       </body>
     </html>
   );

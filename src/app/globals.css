@@ -3,321 +3,383 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --canvas: #eee9df;
+  --ink: #11110f;
+  --graphite: #292923;
+  --quiet: #8f8c85;
+  --signal: #d86236;
+
+  /* Gutters: 18px mobile, 24px tablet, 64px desktop. */
+  --gutter: 18px;
+
+  /* Context-aware tokens; `.on-ink` flips them for dark sections so hairlines
+     and secondary text keep their contrast without per-element overrides. */
+  --rule: rgba(17, 17, 15, 0.14);
+  --rule-strong: rgba(17, 17, 15, 0.28);
+  --muted: #292923;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  overflow-x: hidden;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-
-/* Grid background similar to the reference design */
-.bg-grid {
-  background-image:
-    linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
-  background-size: 24px 24px, 24px 24px;
-}
-
-/* Animation utilities */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.animate-fade-up {
-  animation: fadeUp 600ms ease-out both;
-}
-
-@keyframes floatSlow {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-  100% { transform: translateY(0); }
-}
-.float-slow {
-  animation: floatSlow 8s ease-in-out infinite;
-}
-
-@keyframes slideInLeft {
-  from { opacity: 0; transform: translateX(-30px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-.animate-slide-in-left {
-  animation: slideInLeft 800ms ease-out both;
-}
-
-@keyframes slideInRight {
-  from { opacity: 0; transform: translateX(30px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-.animate-slide-in-right {
-  animation: slideInRight 800ms ease-out both;
-}
-
-@keyframes scaleIn {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
-}
-.animate-scale-in {
-  animation: scaleIn 600ms ease-out both;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #1e293b;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #475569;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
-}
-
-/* Smooth transitions for all interactive elements */
-* {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
-/* Focus styles for accessibility */
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible {
-  outline: 2px solid #3b82f6;
-  outline-offset: 2px;
-}
-
-/* Improved text rendering */
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
-
-/* Container utilities */
-.container {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-@media (min-width: 640px) {
-  .container {
-    max-width: 640px;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
+.on-ink {
+  --rule: rgba(238, 233, 223, 0.16);
+  --rule-strong: rgba(238, 233, 223, 0.32);
+  --muted: rgba(238, 233, 223, 0.72);
 }
 
 @media (min-width: 768px) {
-  .container {
-    max-width: 768px;
+  :root {
+    --gutter: 24px;
   }
 }
 
 @media (min-width: 1024px) {
-  .container {
-    max-width: 1024px;
-    padding-left: 2rem;
-    padding-right: 2rem;
+  :root {
+    --gutter: 64px;
   }
 }
 
-@media (min-width: 1280px) {
-  .container {
-    max-width: 1280px;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Anchor targets clear the fixed masthead. */
+    scroll-padding-top: 5rem;
+    background-color: var(--canvas);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--canvas);
+    color: var(--ink);
+    font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Guards against any single wide child creating a horizontal scrollbar. */
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background-color: var(--signal);
+    color: var(--canvas);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 3px;
+  }
+
+  /* Dark sections need a light focus ring to stay visible. */
+  .on-ink :focus-visible {
+    outline-color: var(--canvas);
   }
 }
 
-@media (min-width: 1536px) {
-  .container {
-    max-width: 1536px;
+@layer components {
+  /* Page shell: max width plus the responsive gutter. */
+  .shell {
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  /* Small uppercase technical label. */
+  .label {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 0.6875rem;
+    line-height: 1.2;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  @media (min-width: 768px) {
+    .label {
+      font-size: 0.75rem;
+    }
+  }
+
+  .display-hero {
+    font-size: clamp(2.35rem, 8.4vw, 7rem);
+    line-height: 0.92;
+    letter-spacing: -0.035em;
+    font-weight: 500;
+    text-wrap: balance;
+  }
+
+  .display-lg {
+    font-size: clamp(1.95rem, 5.2vw, 4rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-weight: 500;
+    text-wrap: balance;
+  }
+
+  .display-md {
+    font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    font-weight: 500;
+    text-wrap: balance;
+  }
+
+  .display-sm {
+    font-size: clamp(1.25rem, 2.2vw, 1.65rem);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+  }
+
+  /* Hairline dividers that follow the section's light/dark context. */
+  .rule-t {
+    border-top: 1px solid var(--rule);
+  }
+
+  .rule-b {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .rule-t-strong {
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .text-muted {
+    color: var(--muted);
+  }
+
+  .prose-quiet {
+    max-width: 62ch;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--graphite);
+  }
+
+  @media (min-width: 768px) {
+    .prose-quiet {
+      font-size: 1.0625rem;
+    }
+  }
+
+  .on-ink .prose-quiet {
+    color: rgba(238, 233, 223, 0.72);
+  }
+
+  /* Text link with an animated hairline underline. */
+  .link-rule {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-bottom: 3px;
+  }
+
+  .link-rule::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(var(--rule-scale, 1));
+    transform-origin: left;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .link-rule:hover::after,
+  .link-rule:focus-visible::after {
+    --rule-scale: 1;
+  }
+
+  .link-rule[data-rule='hidden'] {
+    --rule-scale: 0;
+  }
+
+  /* Buttons: square, hairline, one orange accent for the primary action. */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 3rem;
+    padding-inline: 1.5rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    border: 1px solid transparent;
+    transition:
+      background-color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .btn-primary {
+    background-color: var(--signal);
+    color: #fff;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--ink);
+  }
+
+  .btn-secondary {
+    border-color: rgba(17, 17, 15, 0.28);
+    color: var(--ink);
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--ink);
+    border-color: var(--ink);
+    color: var(--canvas);
+  }
+
+  .on-ink .btn-secondary {
+    border-color: rgba(238, 233, 223, 0.32);
+    color: var(--canvas);
+  }
+
+  .on-ink .btn-secondary:hover {
+    background-color: var(--canvas);
+    border-color: var(--canvas);
+    color: var(--ink);
   }
 }
 
-.hover-lift {
-  transition: transform 200ms ease, box-shadow 200ms ease, filter 200ms ease;
-}
-.hover-lift:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.05);
+@layer utilities {
+  /* Faint hairline hatch standing in for media on private projects. */
+  .pattern-hairline {
+    background-image: repeating-linear-gradient(
+      135deg,
+      rgba(238, 233, 223, 0.07) 0,
+      rgba(238, 233, 223, 0.07) 1px,
+      transparent 1px,
+      transparent 9px
+    );
+  }
+
+  /* Mask reveal used for section headings and the scroll narrative. */
+  .reveal-mask {
+    display: block;
+    overflow: hidden;
+    clip-path: inset(-10% -10% -10% -10%);
+  }
+
+  .reveal-line {
+    display: block;
+    transform: translateY(110%);
+    opacity: 0;
+    transition:
+      transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  [data-shown='true'] .reveal-line {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .reveal-fade {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  [data-shown='true'] .reveal-fade {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* New: subtle badge shine and chip pulse */
-@keyframes shine {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-.badge-shine {
-  background-image: linear-gradient(90deg, rgba(255,255,255,0.04) 0, rgba(255,255,255,0.13) 50%, rgba(255,255,255,0.04) 100%);
-  background-size: 200% auto;
-}
-.badge-shine:hover {
-  animation: shine 1.2s linear;
+/* Scrollbar, tuned to the warm/ink palette. */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
 }
 
-@keyframes subtlePulse {
-  0% { box-shadow: 0 0 0px rgba(124,58,237,0.0); }
-  50% { box-shadow: 0 0 12px rgba(124,58,237,0.25); }
-  100% { box-shadow: 0 0 0px rgba(124,58,237,0.0); }
-}
-.chip-animate:hover {
-  animation: subtlePulse 1200ms ease-in-out;
+::-webkit-scrollbar-track {
+  background: #e3ddd1;
 }
 
-/* Gradient text utility for hero headline */
-.text-gradient {
-  background: linear-gradient(90deg, rgba(167,139,250,1), rgba(34,211,238,1));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+::-webkit-scrollbar-thumb {
+  background: #c2bbac;
 }
 
-/* ===== Clean AI-era design system ===== */
-
-/* Monospace eyebrow / kicker labels */
-.eyebrow {
-  font-family: var(--font-jetbrains-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
-  font-size: 0.72rem;
-  line-height: 1;
-}
-
-/* Reusable clean surface (replaces busy slate cards) */
-.card-clean {
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.02);
-  border-radius: 1rem;
-  transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
-}
-.card-clean:hover {
-  border-color: rgba(167, 139, 250, 0.35);
-  background: rgba(255, 255, 255, 0.035);
-}
-
-/* Subtle fixed grid + glow backdrop for the whole page */
-.app-grid {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  background-size: 44px 44px;
-  -webkit-mask-image: radial-gradient(ellipse 75% 55% at 50% 0%, #000 25%, transparent 80%);
-  mask-image: radial-gradient(ellipse 75% 55% at 50% 0%, #000 25%, transparent 80%);
-}
-
-/* Animated dashed connector for the AI workflow flow */
-.flow-line {
-  background-image: linear-gradient(90deg, rgba(167, 139, 250, 0.55) 0 7px, transparent 7px 15px);
-  background-size: 15px 100%;
-  animation: flowMove 1.1s linear infinite;
-}
-.flow-line-v {
-  background-image: linear-gradient(180deg, rgba(167, 139, 250, 0.55) 0 7px, transparent 7px 15px);
-  background-size: 100% 15px;
-  animation: flowMoveV 1.1s linear infinite;
-}
-@keyframes flowMove {
-  to { background-position: 15px 0; }
-}
-@keyframes flowMoveV {
-  to { background-position: 0 15px; }
+::-webkit-scrollbar-thumb:hover {
+  background: var(--quiet);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .flow-line, .flow-line-v { animation: none; }
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* Reveals must not leave content hidden when transitions are disabled. */
+  .reveal-line,
+  .reveal-fade {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  /* Collapse the pinned scroll stage into a static, readable stack. */
+  [data-scrub-track] {
+    height: auto !important;
+  }
+
+  [data-scrub-stage] {
+    position: static !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  /* The media becomes a plain 16:9 block and the narrative stacks beneath it,
+     instead of being layered over a pinned stage. */
+  [data-scrub-media] {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9;
+  }
+
+  [data-scrub-overlay] {
+    position: static !important;
+    display: block !important;
+    padding-block: 3rem 0 !important;
+  }
+
+  [data-scrub-stage-copy] {
+    position: static !important;
+    transform: none !important;
+  }
+
+  [data-scrub-stage-copy] + [data-scrub-stage-copy] {
+    margin-top: 3rem;
+  }
+
+  [data-scrub-stage-anim] {
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto !important;
+  }
+
+  /* Nothing drives the rule when the stage is un-pinned. */
+  [data-scrub-progress] {
+    display: none !important;
+  }
 }
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 20 14.3% 4.1%;
-    --card: 0 0% 100%;
-    --card-foreground: 20 14.3% 4.1%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 20 14.3% 4.1%;
-    --primary: 24 9.8% 10%;
-    --primary-foreground: 60 9.1% 97.8%;
-    --secondary: 60 4.8% 95.9%;
-    --secondary-foreground: 24 9.8% 10%;
-    --muted: 60 4.8% 95.9%;
-    --muted-foreground: 25 5.3% 44.7%;
-    --accent: 60 4.8% 95.9%;
-    --accent-foreground: 24 9.8% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 60 9.1% 97.8%;
-    --border: 20 5.9% 90%;
-    --input: 20 5.9% 90%;
-    --ring: 20 14.3% 4.1%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
-  }
-  .dark {
-    --background: 20 14.3% 4.1%;
-    --foreground: 60 9.1% 97.8%;
-    --card: 20 14.3% 4.1%;
-    --card-foreground: 60 9.1% 97.8%;
-    --popover: 20 14.3% 4.1%;
-    --popover-foreground: 60 9.1% 97.8%;
-    --primary: 60 9.1% 97.8%;
-    --primary-foreground: 24 9.8% 10%;
-    --secondary: 12 6.5% 15.1%;
-    --secondary-foreground: 60 9.1% 97.8%;
-    --muted: 12 6.5% 15.1%;
-    --muted-foreground: 24 5.4% 63.9%;
-    --accent: 12 6.5% 15.1%;
-    --accent-foreground: 60 9.1% 97.8%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 60 9.1% 97.8%;
-    --border: 12 6.5% 15.1%;
-    --input: 12 6.5% 15.1%;
-    --ring: 24 5.7% 82.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-  }
+/* Keyboard focus must reveal its stage even when scroll progress has faded it
+   out — author !important intentionally beats the inline styles the scroll
+   handler writes. */
+[data-scrub-stage-anim]:focus-within {
+  opacity: 1 !important;
+  transform: none !important;
+  pointer-events: auto !important;
 }
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
-
