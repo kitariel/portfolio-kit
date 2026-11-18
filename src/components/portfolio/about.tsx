@@ -1,108 +1,65 @@
-'use client';
-
-import Image from 'next/image';
-import {SectionHeading} from '@/components/portfolio/section-heading';
-import {useReveal} from '@/hooks/use-reveal';
-import {credibilityPoints, media, profile} from '@/lib/portfolio-data';
-import {cn} from '@/lib/utils';
+import { Check, MapPin } from "lucide-react";
+import { profile, credibilityPoints } from "@/lib/portfolio-data";
+import { SectionHeading } from "./section-heading";
 
 const beliefs = [
   {
-    title: 'A technical partner, not a ticket queue',
-    body: 'I want the context behind the request — the constraint, the deadline, the thing that is actually at risk. That is usually where the better solution is hiding.',
+    title: "Start with the context",
+    body: "The business, the people using the product, and the constraints all shape the solution. I want to understand those before deciding what to build.",
   },
   {
-    title: 'Unclear ideas become understandable systems',
-    body: 'Most projects do not start with a spec. They start with a conversation. Turning that into an architecture other people can build on is the part I enjoy most.',
+    title: "Make the system understandable",
+    body: "I enjoy turning a conversation into a clear workflow and an architecture that other engineers can build on.",
   },
   {
-    title: 'Reusable architecture outlives the sprint',
-    body: 'Maintainable code, shared modules and standards I can hand to the next engineer — including the six I currently lead and mentor.',
+    title: "Build for the next engineer",
+    body: "Shared modules, maintainable code, and useful documentation matter. So does helping the engineers I lead develop their own judgement.",
   },
   {
-    title: 'AI assists; the judgement stays human',
-    body: 'Models research, draft and implement faster than I can alone. Creativity, responsibility and the final call are still mine.',
+    title: "Own the final decision",
+    body: "AI is part of my research, planning, and implementation process. I stay responsible for the quality and behaviour of what ships.",
   },
 ];
-
 export function About() {
-  const {ref, shown} = useReveal({threshold: 0.08});
-
   return (
-    <section id="about" aria-labelledby="about-heading" className="relative overflow-hidden px-6 py-24 sm:py-28">
-      {/* The one place the palette warms up — the human behind the systems. */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(ellipse 60% 50% at 78% 22%, rgba(214, 164, 101, 0.10), transparent 70%)',
-        }}
+    <section
+      id="about"
+      aria-labelledby="about-heading"
+      className="panel self-start"
+    >
+      <SectionHeading
+        title={<span id="about-heading">About the engineer</span>}
       />
-
-      <div className="relative mx-auto max-w-6xl">
-        <SectionHeading
-          eyebrow="07 — About"
-          title={<span id="about-heading">The engineer who has to live with the decisions.</span>}
-          className="[&_.eyebrow]:text-accent-warm [&_.eyebrow>span]:bg-accent-warm"
-        />
-
-        <div ref={ref} className="mt-14 grid gap-10 sm:mt-16 lg:grid-cols-12 lg:gap-14">
-          <div
-            className={cn(
-              'transition-all duration-700 ease-out lg:col-span-5',
-              shown ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'
-            )}
-          >
-            <div className="panel relative overflow-hidden">
-              <Image
-                src={media.portrait.src}
-                alt={media.portrait.alt}
-                width={media.portrait.width}
-                height={media.portrait.height}
-                sizes="(min-width: 1024px) 40vw, 100vw"
-                className="h-auto w-full object-cover"
-              />
-              <div
+      <div className="p-5">
+        <p className="text-sm leading-7">{profile.intro}</p>
+        <p className="mt-4 flex items-center gap-2 text-xs text-foreground-muted">
+          <MapPin aria-hidden className="h-4 w-4" />
+          {profile.location}
+        </p>
+        <ul className="mt-5 space-y-3 border-t border-border pt-5">
+          {credibilityPoints.slice(1).map((point) => (
+            <li
+              key={point}
+              className="flex gap-2 text-xs leading-6 text-foreground-muted"
+            >
+              <Check
                 aria-hidden
-                className="pointer-events-none absolute inset-0"
-                style={{
-                  background:
-                    'linear-gradient(180deg, transparent 55%, rgba(214, 164, 101, 0.10) 80%, rgba(6, 17, 31, 0.65) 100%)',
-                }}
+                className="mt-1 h-4 w-4 shrink-0 text-accent"
               />
+              {point}
+            </li>
+          ))}
+        </ul>
+        <dl className="mt-6 space-y-5 border-t border-border pt-5">
+          {beliefs.map((belief) => (
+            <div key={belief.title}>
+              <dt className="text-xs font-medium">{belief.title}</dt>
+              <dd className="mt-2 text-xs leading-6 text-foreground-muted">
+                {belief.body}
+              </dd>
             </div>
-
-            <ul className="mt-6 space-y-2.5">
-              {credibilityPoints.map((point) => (
-                <li
-                  key={point}
-                  className="relative pl-5 text-sm leading-relaxed text-foreground-muted before:absolute before:left-0 before:top-[0.6em] before:h-1 before:w-1 before:rounded-full before:bg-accent-warm"
-                >
-                  {point}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div
-            className={cn(
-              'transition-all delay-100 duration-700 ease-out lg:col-span-7',
-              shown ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'
-            )}
-          >
-            <p className="text-lg leading-relaxed text-foreground sm:text-xl">{profile.intro}</p>
-
-            <dl className="mt-10 space-y-8">
-              {beliefs.map((belief) => (
-                <div key={belief.title} className="border-l border-border pl-6">
-                  <dt className="font-display text-lg font-medium text-foreground">{belief.title}</dt>
-                  <dd className="mt-2 text-sm leading-relaxed text-foreground-muted">{belief.body}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </div>
+          ))}
+        </dl>
       </div>
     </section>
   );

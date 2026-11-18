@@ -1,51 +1,55 @@
-import './globals.css';
-import type {Metadata, Viewport} from 'next';
-import {Inter, JetBrains_Mono, Space_Grotesk} from 'next/font/google';
-import {Toaster} from '@/components/ui/toaster';
-import {Analytics} from '@vercel/analytics/next';
+import "./globals.css";
+import { themeInitScript } from "@/lib/theme";
+import type { Metadata, Viewport } from "next";
+import { Inter, JetBrains_Mono } from "next/font/google";
+import { Toaster } from "@/components/ui/toaster";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-space-grotesk',
-  display: 'swap',
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
 });
 
 const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-jetbrains-mono',
-  display: 'swap',
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: 'Kit Mikhael Bagares — Senior Full-Stack Engineer / Lead Developer',
+  title: "Kit Mikhael Bagares — Senior Full-Stack Engineer / Lead Developer",
   description:
-    'I build production-ready digital products by connecting business goals, thoughtful user experience, scalable engineering, and practical AI workflows. Based in Cebu, Philippines.',
+    "I build production-ready digital products by connecting business goals, thoughtful user experience, scalable engineering, and practical AI workflows. Based in Cebu, Philippines.",
 };
 
 export const viewport: Viewport = {
-  themeColor: '#06111f',
-  colorScheme: 'dark',
+  themeColor: "#F8FAFC",
+  colorScheme: "light dark",
 };
 
 export default function RootLayout(
   props: Readonly<{
     children: React.ReactNode;
-  }>
+  }>,
 ) {
-  const {children} = props;
+  const { children } = props;
   return (
     <html
-      lang='en'
+      lang="en"
       suppressHydrationWarning
-      className={`dark ${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+      className={`${inter.variable} ${jetbrainsMono.variable}`}
     >
-      <body className='bg-background font-inter text-foreground antialiased' suppressHydrationWarning>
+      <head>
+        <script
+          id="portfolio-theme-init"
+          dangerouslySetInnerHTML={{ __html: themeInitScript }}
+        />
+      </head>
+      <body
+        className="bg-background font-inter text-foreground antialiased"
+        suppressHydrationWarning
+      >
         {children}
         <Analytics />
         <Toaster />

@@ -1,63 +1,88 @@
-'use client';
-
-import {SectionHeading} from '@/components/portfolio/section-heading';
-import {useReveal} from '@/hooks/use-reveal';
-import {education, experience} from '@/lib/portfolio-data';
-import {cn} from '@/lib/utils';
+import { ArrowUpRight, BriefcaseBusiness, GraduationCap } from "lucide-react";
+import { profile, experience, education } from "@/lib/portfolio-data";
+import { SectionHeading } from "./section-heading";
 
 export function Experience() {
-  const {ref, shown} = useReveal({threshold: 0.08});
-
   return (
-    <section id="experience" aria-labelledby="experience-heading" className="relative px-6 py-24 sm:py-28">
-      <div className="mx-auto max-w-6xl">
-        <SectionHeading
-          eyebrow="06 — Experience"
-          title={<span id="experience-heading">Where the practice was built.</span>}
-        />
-
-        <div ref={ref} className="mt-14 space-y-4 sm:mt-16">
-          {experience.map((job, index) => (
-            <article
-              key={`${job.company}-${job.period}`}
-              className={cn(
-                'panel p-6 transition-all duration-700 ease-out sm:p-8',
-                shown ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'
-              )}
-              style={{transitionDelay: `${index * 100}ms`}}
-            >
-              <div className="flex flex-col gap-2 lg:flex-row lg:items-baseline lg:justify-between">
-                <div>
-                  <h3 className="font-display text-xl font-medium text-foreground">{job.title}</h3>
-                  <p className="mt-1 text-sm text-accent">{job.company}</p>
-                </div>
-                <p className="font-jetbrains text-xs text-foreground-muted">
-                  {job.period} · {job.location}
+    <section
+      id="experience"
+      aria-labelledby="experience-heading"
+      className="panel"
+    >
+      <SectionHeading
+        title={<span id="experience-heading">Experience & education</span>}
+        subtitle="Engineering, leadership, and the foundations behind them"
+        action={
+          <a
+            href={profile.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-link text-xs"
+          >
+            LinkedIn <ArrowUpRight aria-hidden className="h-3.5 w-3.5" />
+            <span className="sr-only"> (opens in a new tab)</span>
+          </a>
+        }
+      />
+      <div className="p-5">
+        {experience.map((job, index) => (
+          <article key={job.period} className="relative flex gap-4 pb-8">
+            {index < experience.length && (
+              <span
+                aria-hidden
+                className="absolute bottom-0 left-[15px] top-8 w-px bg-border"
+              />
+            )}
+            <span className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-border bg-background">
+              <BriefcaseBusiness
+                aria-hidden
+                className="h-4 w-4 text-foreground-muted"
+              />
+            </span>
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap items-start justify-between gap-2">
+                <h3 className="text-sm font-medium leading-6">{job.title}</h3>
+                <p className="text-[11px] leading-6 text-foreground-muted">
+                  {job.period}
                 </p>
               </div>
-
-              <ul className="mt-6 space-y-2.5">
+              <p className="mt-1 text-xs font-medium text-accent">
+                {job.company}
+              </p>
+              <p className="mt-1 text-[11px] text-foreground-muted">
+                {job.location}
+              </p>
+              <ul className="mt-3 space-y-2">
                 {job.achievements.map((achievement) => (
                   <li
                     key={achievement}
-                    className="relative pl-5 text-sm leading-relaxed text-foreground-muted before:absolute before:left-0 before:top-[0.6em] before:h-1 before:w-1 before:rounded-full before:bg-accent"
+                    className="flex gap-2 text-xs leading-6 text-foreground-muted"
                   >
+                    <span
+                      aria-hidden
+                      className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-border-strong"
+                    />
                     {achievement}
                   </li>
                 ))}
               </ul>
-            </article>
-          ))}
-
-          <div className="panel flex flex-col gap-2 p-6 sm:flex-row sm:items-baseline sm:justify-between sm:p-8">
-            <div>
-              <h3 className="font-display text-lg font-medium text-foreground">{education.degree}</h3>
-              <p className="mt-1 text-sm text-foreground-muted">
-                {education.specialization} · {education.institution}
-              </p>
             </div>
-            <p className="font-jetbrains text-xs text-foreground-muted">
-              {education.period} · {education.location}
+          </article>
+        ))}
+        <div className="relative flex gap-4">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-border bg-background">
+            <GraduationCap
+              aria-hidden
+              className="h-4 w-4 text-foreground-muted"
+            />
+          </span>
+          <div>
+            <h3 className="text-sm font-medium">{education.degree}</h3>
+            <p className="mt-2 text-xs text-accent">{education.institution}</p>
+            <p className="mt-2 text-xs leading-6 text-foreground-muted">
+              {education.specialization} · {education.period}
+              <br />
+              {education.location}
             </p>
           </div>
         </div>

@@ -2,127 +2,130 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ==========================================================================
-   Midnight Intelligence — design tokens
-   Midnight navy surfaces, warm off-white type, a single cool accent and a
-   single warm accent. Everything else is built from these.
-   ========================================================================== */
-
 @layer base {
   :root {
-    --background: #06111f;
-    --background-deep: #020711;
-    --surface: #0b1c2e;
-    --surface-elevated: #10263d;
-    --surface-glass: rgba(12, 28, 46, 0.64);
-    --foreground: #f4efe6;
-    --foreground-muted: #a8b2c0;
-    --border: rgba(244, 239, 230, 0.12);
-    --border-strong: rgba(244, 239, 230, 0.22);
-    --accent: #7fd7ff;
-    --accent-warm: #d6a465;
-
-    /* Backdrop of the cinematic footage — used to dissolve video into page. */
-    --video-backdrop: #010e1f;
-    /* Aspect ratio of the transformation footage (16:9). */
-    --video-aspect: 1.77778;
-
-    /* shadcn/ui channel tokens, retuned to the palette above. These stay in
-       `H S% L%` form so opacity modifiers (bg-primary/90) keep working. */
-    --card: 211 61% 11%;
-    --card-foreground: 39 39% 93%;
-    --popover: 211 61% 11%;
-    --popover-foreground: 39 39% 93%;
-    /* Buttons read as warm off-white on midnight; the cool accent is reserved
-       for eyebrows, hairlines and marks so nothing shouts. */
-    --primary: 39 39% 93%;
-    --primary-foreground: 220 79% 4%;
-    --secondary: 211 58% 15%;
-    --secondary-foreground: 39 39% 93%;
-    --muted: 211 58% 15%;
-    --destructive: 0 62% 45%;
-    --destructive-foreground: 39 39% 93%;
-    --radius: 0.875rem;
+    --background: #f8fafc;
+    --background-deep: #f1f5f9;
+    --surface: #ffffff;
+    --surface-elevated: #f1f5f9;
+    --surface-glass: #ffffff;
+    --foreground: #0f172a;
+    --foreground-muted: #5f6d80;
+    --border: #e2e8f0;
+    --border-strong: #cbd5e1;
+    --accent: #2563eb;
+    --accent-warm: #2563eb;
+    --accent-soft: #eff4ff;
+    --selection: #dbeafe;
+    --success: #15803d;
+    --success-soft: #f0fdf4;
+    --warning: #a16207;
+    --warning-soft: #fffbeb;
+    --info: #4f46e5;
+    --info-soft: #eef2ff;
+    --teal: #0f766e;
+    --teal-soft: #f0fdfa;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 40% 96%;
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 0 0% 100%;
+    --radius: 0.75rem;
   }
-
+  .dark {
+    --background: #111317;
+    --background-deep: #0d0f12;
+    --surface: #191c21;
+    --surface-elevated: #22262d;
+    --surface-glass: #191c21;
+    --foreground: #e7ebf0;
+    --foreground-muted: #a0a7b4;
+    --border: #2b3038;
+    --border-strong: #414955;
+    --accent: #a4bcff;
+    --accent-warm: #a4bcff;
+    --accent-soft: #242e43;
+    --selection: #304268;
+    --success: #7bc69a;
+    --success-soft: #18271f;
+    --warning: #d8b87c;
+    --warning-soft: #2c261c;
+    --info: #b3b9e6;
+    --info-soft: #252638;
+    --teal: #8bc9c1;
+    --teal-soft: #1b2a29;
+    --card: 218 14% 11%;
+    --card-foreground: 214 23% 92%;
+    --popover: 218 14% 11%;
+    --popover-foreground: 214 23% 92%;
+    --primary: 214 23% 92%;
+    --primary-foreground: 220 15% 8%;
+    --secondary: 218 14% 16%;
+    --secondary-foreground: 214 23% 92%;
+    --muted: 218 14% 16%;
+    --destructive: 0 65% 42%;
+    --destructive-foreground: 0 0% 100%;
+  }
   * {
     @apply border-border;
   }
-
   html {
     scroll-behavior: smooth;
-    /* Anchor targets clear the fixed navigation. */
-    scroll-padding-top: 5rem;
-    background-color: var(--background);
+    scroll-padding-top: 6rem;
   }
-
   body {
     @apply bg-background text-foreground;
-    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
   }
-
-  /* One consistent, always-visible focus treatment. */
   :focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 3px;
-    border-radius: 4px;
   }
-
   ::selection {
-    background: rgba(127, 215, 255, 0.26);
+    background: var(--selection);
     color: var(--foreground);
+  }
+  svg {
+    stroke-width: 1.5;
+  }
+  summary {
+    cursor: pointer;
+  }
+  dialog::backdrop {
+    background: rgb(15 23 42 / 40%);
   }
 }
 
-/* ==========================================================================
-   Surfaces & primitives
-   ========================================================================== */
-
 @layer components {
-  /* Standard glass panel: thin border, faint interior light, no heavy blur. */
   .panel {
-    background: linear-gradient(180deg, rgba(244, 239, 230, 0.045), rgba(244, 239, 230, 0.015));
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
+    @apply min-w-0 rounded-xl border border-border bg-surface;
   }
-
-  /* Interactive variant — subtle lift, illuminated hairline. No tilt, no glow. */
-  .panel-interactive {
-    transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1), border-color 260ms ease,
-      background-color 260ms ease, box-shadow 260ms ease;
+  .panel-heading {
+    @apply flex flex-wrap items-center justify-between gap-3 border-b border-border px-5 py-4;
   }
-  .panel-interactive:hover,
-  .panel-interactive:focus-within {
-    transform: translateY(-3px);
-    border-color: var(--border-strong);
-    box-shadow: 0 18px 40px -24px rgba(2, 7, 17, 0.9);
+  .panel-title {
+    @apply text-base font-medium leading-6;
   }
-
-  /*
-   * Pull the first coded chapter into the cinematic runway. Its transparent
-   * leading edge lets the held final frame remain visible while the gradient
-   * quietly establishes the real page surface behind the heading and cards.
-   */
-  .workflow-handoff {
-    margin-top: -70vh;
-    background: linear-gradient(
-      to bottom,
-      transparent 0,
-      rgba(6, 17, 31, 0.76) 12rem,
-      var(--background) 30rem
-    );
+  .tag {
+    @apply inline-flex rounded-md border border-border bg-background px-2 py-1 text-xs leading-4 text-foreground-muted;
   }
-
-  /* Mono kicker label above every section title. */
+  .text-link {
+    @apply inline-flex min-h-10 items-center gap-2 text-sm font-medium text-accent underline-offset-4 transition-colors hover:underline;
+  }
   .eyebrow {
-    font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
-    text-transform: uppercase;
-    letter-spacing: 0.22em;
-    font-size: 0.7rem;
-    line-height: 1;
+    @apply text-xs leading-5 text-foreground-muted;
+  }
+  .metric-cell {
+    @apply min-w-0 rounded-xl border border-border bg-surface p-5 xl:rounded-none xl:border-0 xl:bg-transparent;
+  }
+  .icon-box {
+    @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-lg;
   }
 }
 
@@ -130,120 +133,20 @@
   .text-balance {
     text-wrap: balance;
   }
-
   .font-display {
-    font-family: var(--font-space-grotesk), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  }
-
-  /* Very fine film grain. Static, decorative, cheap — no animation. */
-  .grain::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.035;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-
-  /* Geometry of the footage on screen, in pure CSS, so DOM elements can be
-     positioned in the same coordinate space as the video without measuring it.
-     Landscape fills the viewport (`object-fit: cover`). */
-  .video-stage {
-    width: max(100vw, calc(100svh * var(--video-aspect)));
-    height: max(100svh, calc(100vw / var(--video-aspect)));
-  }
-
-  /* Portrait would crop the hands and both AI marks out of a cover fit, so the
-     frame is fitted to the width and zoomed instead: the subject stays large,
-     nothing important leaves the screen, and the letterbox is invisible because
-     the stage sits on the footage's own backdrop colour. */
-  @media (orientation: portrait) {
-    .video-stage {
-      width: min(calc(100vw * 1.85), calc(100svh * var(--video-aspect)));
-      height: min(calc(100vw * 1.85 / var(--video-aspect)), 100svh);
-    }
-
-    /* Feather the top and bottom edges of the letterboxed band so it dissolves
-       into the page instead of ending on a visible seam. */
-    .video-stage-media {
-      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 4.5%, #000 95%, transparent 100%);
-      mask-image: linear-gradient(to bottom, transparent 0%, #000 4.5%, #000 95%, transparent 100%);
-    }
+    font-family: var(--font-inter), sans-serif;
   }
 }
 
-/* ==========================================================================
-   Motion
-   ========================================================================== */
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Transform only — animating opacity here would override the reveal gating
-   that keeps the cue hidden during the transformation. */
-@keyframes scrollCue {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(6px);
-  }
-}
-
-.animate-scroll-cue {
-  animation: scrollCue 2.4s ease-in-out infinite;
-}
-
-/* Reduced motion: the story is told by content and short opacity fades only. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .workflow-handoff {
-    margin-top: 0;
-    background: var(--background);
-  }
-  .animate-scroll-cue {
-    animation: none;
-  }
-  .panel-interactive:hover,
-  .panel-interactive:focus-within {
-    transform: none;
-  }
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 120ms !important;
+    animation: none !important;
+    transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-}
-
-/* ==========================================================================
-   Chrome
-   ========================================================================== */
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-::-webkit-scrollbar-track {
-  background: var(--background-deep);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--surface-elevated);
-  border-radius: 6px;
-  border: 2px solid var(--background-deep);
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #17354f;
 }

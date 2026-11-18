@@ -1,51 +1,53 @@
-'use client';
-
-import {Check} from 'lucide-react';
-import {SectionHeading} from '@/components/portfolio/section-heading';
-import {useReveal} from '@/hooks/use-reveal';
-import {impactHighlights, impactMetrics} from '@/lib/portfolio-data';
-import {cn} from '@/lib/utils';
+import { ArrowUpRight, TrendingUp } from "lucide-react";
+import { impactHighlights, impactMetrics } from "@/lib/portfolio-data";
+import { SectionHeading } from "./section-heading";
 
 export function ImpactMetrics() {
-  const {ref, shown} = useReveal({threshold: 0.1});
-
   return (
-    <section id="impact" aria-labelledby="impact-heading" className="relative px-6 py-24 sm:py-28">
-      <div className="mx-auto max-w-6xl">
-        <SectionHeading
-          eyebrow="03 — Engineering impact"
-          title={<span id="impact-heading">What the engineering actually changed.</span>}
-          subtitle="Highlights from five years in production teams — measured where the work was measured, and described as experience rather than a promise."
-        />
-
-        <div ref={ref} className="mt-14 grid gap-5 sm:mt-16 sm:grid-cols-2">
-          {impactMetrics.map((metric, index) => (
-            <div
-              key={metric.label}
-              className={cn(
-                'panel p-6 transition-all duration-700 ease-out sm:p-7',
-                shown ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'
-              )}
-              style={{transitionDelay: `${index * 90}ms`}}
-            >
-              <p className="font-display text-4xl font-medium tracking-tight text-foreground sm:text-5xl">
+    <section aria-labelledby="impact-heading" className="panel">
+      <SectionHeading
+        title={<span id="impact-heading">Engineering impact</span>}
+        action={
+          <TrendingUp aria-hidden className="h-4 w-4 text-foreground-muted" />
+        }
+      />
+      <div className="grid divide-y divide-border sm:grid-cols-2 sm:divide-y-0 min-[1440px]:grid-cols-1 min-[1440px]:divide-y">
+        {impactMetrics.map((metric, index) => (
+          <div className="p-5" key={metric.label}>
+            <div className="flex items-baseline gap-2">
+              <p className="text-[28px] font-medium tracking-tight tabular-nums">
                 {metric.value}
               </p>
-              <p className="mt-2 text-sm font-medium text-accent">{metric.label}</p>
-              <p className="mt-3 text-sm leading-relaxed text-foreground-muted">{metric.detail}</p>
+              <span className="text-xs text-foreground-muted">
+                {index === 3 ? "engineers" : "improvement"}
+              </span>
             </div>
-          ))}
-        </div>
+            <h3 className="mt-2 text-xs font-medium">{metric.label}</h3>
 
-        <ul className="mt-10 grid gap-3 sm:grid-cols-2">
-          {impactHighlights.map((highlight) => (
-            <li key={highlight} className="flex items-start gap-3 text-sm text-foreground-muted">
-              <Check aria-hidden className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-              {highlight}
-            </li>
+            <p className="mt-3 text-xs leading-6 text-foreground-muted">
+              {metric.detail}
+            </p>
+          </div>
+        ))}
+      </div>
+      <div className="border-t border-border px-5 py-4">
+        <p className="text-[11px] leading-5 text-foreground-muted">
+          Selected outcomes from my résumé and production engineering work
+        </p>
+        <a href="#experience" className="text-link mt-1 text-xs">
+          View experience <ArrowUpRight aria-hidden className="h-3.5 w-3.5" />
+        </a>
+      </div>
+      <details className="border-t border-border px-5 py-4">
+        <summary className="min-h-8 text-xs font-medium">
+          More engineering focus areas
+        </summary>
+        <ul className="mt-3 space-y-2 text-xs leading-6 text-foreground-muted">
+          {impactHighlights.map((item) => (
+            <li key={item}>{item}</li>
           ))}
         </ul>
-      </div>
+      </details>
     </section>
   );
 }
